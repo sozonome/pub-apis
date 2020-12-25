@@ -1,4 +1,12 @@
 # pub-apis
+
+![pub-apis](https://socialify.git.ci/sozonome/pub-apis/image?description=1&logo=https%3A%2F%2Fsznm.dev%2Fapp_icons%2Fpub-apis.svg&pattern=Circuit%20Board&theme=Dark)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=alert_status)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=bugs)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=code_smells)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=coverage)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=sqale_index)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=sozonome_pub-apis&metric=security_rating)](https://sonarcloud.io/dashboard?id=sozonome_pub-apis)
+
+Find public APIs for your next projects.
+Powered by [https://api.publicapis.org/](https://api.publicapis.org/) by [davemachado](https://github.com/davemachado/public-api)
+
 ## Getting Started
 
 First, run the development server:
