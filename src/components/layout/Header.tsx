@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Flex as="header" width="full" align="center">
       <AccessibleLink href="/">
-        <Heading as="h1">nextchakra-starter</Heading>
+        <Heading as="h1">pub-apis</Heading>
       </AccessibleLink>
 
       <Box marginLeft="auto">
