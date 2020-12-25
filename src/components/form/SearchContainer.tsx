@@ -21,13 +21,12 @@ import {
 import { useFormik } from "formik";
 import { ChangeEvent, ReactText, useState } from "react";
 
-import ItemCard from "../ItemCard";
-
 import {
   ListQuery,
   useAPICategories,
   useAPIList,
 } from "../../helpers/fetchHooks";
+import ItemContainer from "../item/ItemContainer";
 
 type SearchFormValueType = {
   queryParams: ListQuery;
@@ -107,7 +106,7 @@ const SearchContainer = () => {
               name="queryParams.title"
               value={title}
               onChange={handleChange}
-              placeholder="search API title"
+              placeholder="search API name"
               fontWeight="bold"
               size="lg"
             />
@@ -243,16 +242,14 @@ const SearchContainer = () => {
           isFullWidth
           onClick={() => resetForm()}
         >
-          Reset
+          Clear Search Input
         </Button>
       </Stack>
 
-      {dirty && shouldFetch && (
-        <Skeleton isLoaded={!isLoadingSearchResult} minHeight={24} marginY={4}>
+      {shouldFetch && (
+        <Skeleton isLoaded={!isLoadingSearchResult} minHeight={72} marginY={4}>
           {searchResult && searchResult.entries ? (
-            searchResult.entries.map((entry, index) => (
-              <ItemCard value={entry} key={index} />
-            ))
+            <ItemContainer entries={searchResult.entries} />
           ) : (
             <Text textAlign="center">Not Found</Text>
           )}
