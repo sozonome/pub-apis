@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.0.0",
     "axios": "^0.21.1",
     "fontsource-jost": "^4.0.0",
+    "formik": "^2.2.6",
     "framer-motion": "^2.9.4",
     "next": "^10.0.0",
     "next-pwa": "^3.1.4",
