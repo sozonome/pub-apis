@@ -2,9 +2,20 @@ import useSWR from "swr";
 
 import { fetcher } from "./fetcher";
 
+import { ListItem } from "../components/models/list";
+
 const API_URL = `https://api.publicapis.org`;
 
-export const useAPICategories = () => {
+export type SWRHookResp = {
+  isLoading: boolean;
+  isError: any;
+};
+
+export type CategoryRes = SWRHookResp & {
+  data: Array<string>;
+};
+
+export const useAPICategories = (): CategoryRes => {
   const { data, error } = useSWR(`${API_URL}/categories`, fetcher);
 
   return {
@@ -19,15 +30,22 @@ export type ListQuery = {
   description?: string;
   auth?: string;
   https?: boolean;
-  cors?: "yes" | "no";
+  cors?: "yes" | "no" | "unknown";
   category?: string;
+};
+
+export type APIListRes = SWRHookResp & {
+  data: {
+    count: number;
+    entries: Array<ListItem>;
+  };
 };
 
 export const useAPIList = (
   shouldFetch: boolean,
   query?: ListQuery,
   isRandom?: boolean
-) => {
+): APIListRes => {
   const { data, error } = useSWR(
     [
       shouldFetch ? `${API_URL}/${isRandom ? "random" : "entries"}` : null,
