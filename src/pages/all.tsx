@@ -28,7 +28,9 @@ const All = () => {
         </Button>
       </Link>
       <Skeleton isLoaded={!isLoading} minHeight="80vh">
-        {data && data.entries && <ItemContainer entries={sortedData} />}
+        {data && data.entries && (
+          <ItemContainer entries={sortedData} useAccordion={false} />
+        )}
       </Skeleton>
     </Box>
   );

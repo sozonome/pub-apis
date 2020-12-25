@@ -22,9 +22,10 @@ import { ListItem } from "../models/list";
 
 type ItemCardProps = {
   value: ListItem;
+  useAccordion?: boolean;
 };
 
-const ItemCard = ({ value }: ItemCardProps) => {
+const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
   const { colorMode } = useColorMode();
 
   const {
@@ -36,6 +37,13 @@ const ItemCard = ({ value }: ItemCardProps) => {
     Category,
     Link: APILink,
   } = value;
+
+  const apiDetailsProps: APIDetailsProps = {
+    Cors,
+    HTTPS,
+    Category,
+    Auth,
+  };
 
   const toast = useToast();
 
@@ -62,33 +70,23 @@ const ItemCard = ({ value }: ItemCardProps) => {
         <Text>{Description}</Text>
       </Box>
 
-      <Accordion allowToggle marginY={2}>
-        <AccordionItem>
-          <AccordionButton>
-            <Box flex="1" textAlign="left">
-              <Text fontSize="sm">Details</Text>
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-          <AccordionPanel>
-            <Text>Category: {Category}</Text>
-            <Text>Support: </Text>
-            <Box marginLeft={4}>
-              <Flex alignItems="center">
-                <Text marginRight={2}>HTTPS :</Text>
-                {HTTPS ? (
-                  <AiFillCheckCircle color="green" />
-                ) : (
-                  <AiFillCloseCircle color="red" />
-                )}
-              </Flex>
-
-              <Text>CORS : {Cors}</Text>
-            </Box>
-            {Auth && <Text>Auth : {Auth}</Text>}
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
+      {useAccordion ? (
+        <Accordion allowToggle marginY={2}>
+          <AccordionItem>
+            <AccordionButton>
+              <Box flex="1" textAlign="left">
+                <Text fontSize="sm">Details</Text>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <APIDetails {...apiDetailsProps} />
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      ) : (
+        <APIDetails {...apiDetailsProps} />
+      )}
 
       <Box>
         <Text>API Link: </Text>
@@ -108,6 +106,30 @@ const ItemCard = ({ value }: ItemCardProps) => {
         </Grid>
       </Box>
     </Box>
+  );
+};
+
+type APIDetailsProps = Omit<ListItem, "API" | "Description" | "Link">;
+
+const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
+  return (
+    <>
+      <Text>Category: {Category}</Text>
+      <Text>Support: </Text>
+      <Box marginLeft={4}>
+        <Flex alignItems="center">
+          <Text marginRight={2}>HTTPS :</Text>
+          {HTTPS ? (
+            <AiFillCheckCircle color="green" />
+          ) : (
+            <AiFillCloseCircle color="red" />
+          )}
+        </Flex>
+
+        <Text>CORS : {Cors}</Text>
+      </Box>
+      {Auth && <Text>Auth : {Auth}</Text>}
+    </>
   );
 };
 
