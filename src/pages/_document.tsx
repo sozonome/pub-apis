@@ -1,8 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 const APP_NAME = "Public APIs";
-const APP_DESCRIPTION =
-  "Find public APIs for your next projects.";
+const APP_DESCRIPTION = "Find public APIs for your next projects.";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
