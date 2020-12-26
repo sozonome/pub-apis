@@ -48,7 +48,7 @@ const INITIAL_VALUES: SearchFormValueType = {
 const SearchContainer = () => {
   const {
     values: {
-      queryParams: { title, description, https, cors, category },
+      queryParams: { title, description, https, category },
       searchDescription,
       selectCategory,
       isRandom,
@@ -101,6 +101,7 @@ const SearchContainer = () => {
         <Stack>
           <FormControl>
             <Input
+              type="text"
               borderRadius={12}
               textAlign="center"
               name="queryParams.title"
@@ -141,6 +142,7 @@ const SearchContainer = () => {
                   {searchDescription && (
                     <FormControl>
                       <Input
+                        type="text"
                         borderRadius={12}
                         textAlign="center"
                         name="queryParams.description"
@@ -175,12 +177,11 @@ const SearchContainer = () => {
                         value={category}
                         onChange={handleChange}
                       >
-                        {categories &&
-                          categories.map((category: string, index) => (
-                            <Text as="option" key={index}>
-                              {category}
-                            </Text>
-                          ))}
+                        {categories?.map((categoryItem: string, index) => (
+                          <Text as="option" key={index}>
+                            {categoryItem}
+                          </Text>
+                        ))}
                       </Select>
                     </FormControl>
                   )}
