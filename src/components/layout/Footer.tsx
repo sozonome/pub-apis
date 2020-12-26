@@ -1,4 +1,5 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Link, Text } from "@chakra-ui/react";
+import Badges from "./Badges";
 
 const Footer = () => {
   return (
@@ -6,16 +7,21 @@ const Footer = () => {
       as="footer"
       width="full"
       alignSelf="flex-end"
-      height={24}
-      align="center"
+      height={[48, 24]}
       justifyContent="center"
     >
-      <Text>
-        2020 -{" "}
-        <Link href="https://sznm.dev" fontWeight="bold" isExternal>
-          sznm.dev
-        </Link>
-      </Text>
+      <Box textAlign="center">
+        <Text>
+          2020 -{" "}
+          <Link href="https://sznm.dev" fontWeight="bold" isExternal>
+            sznm.dev
+          </Link>
+        </Text>
+
+        <Text>Powered by https://api.publicapis.org/</Text>
+
+        <Badges />
+      </Box>
     </Flex>
   );
 };
