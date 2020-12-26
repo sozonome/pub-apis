@@ -4,7 +4,12 @@ const Badges = () => {
   const { colorMode } = useColorMode();
 
   return (
-    <Grid templateColumns={["repeat(1)", "repeat(2, 1fr)"]} gap={2} marginY={2}>
+    <Grid
+      width="full"
+      templateColumns={["repeat(1)", "repeat(2, 1fr)"]}
+      gap={2}
+      marginY={2}
+    >
       <Link
         href="https://www.producthunt.com/posts/public-apis-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-public-apis-3"
         target="_blank"

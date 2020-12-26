@@ -7,7 +7,7 @@ const Footer = () => {
       as="footer"
       width="full"
       alignSelf="flex-end"
-      height={[48, 24]}
+      height={[48, 36]}
       justifyContent="center"
     >
       <Box textAlign="center">
@@ -18,7 +18,7 @@ const Footer = () => {
           </Link>
         </Text>
 
-        <Text>Powered by https://api.publicapis.org/</Text>
+        <Text fontSize="sm">Powered by https://api.publicapis.org/</Text>
 
         <Badges />
       </Box>
