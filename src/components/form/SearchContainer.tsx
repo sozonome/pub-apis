@@ -48,7 +48,7 @@ const INITIAL_VALUES: SearchFormValueType = {
 const SearchContainer = () => {
   const {
     values: {
-      queryParams: { title, description, https, cors, category },
+      queryParams: { title, description, https, category },
       searchDescription,
       selectCategory,
       isRandom,
@@ -177,9 +177,9 @@ const SearchContainer = () => {
                         value={category}
                         onChange={handleChange}
                       >
-                        {categories?.map((category: string, index) => (
+                        {categories?.map((categoryItem: string, index) => (
                           <Text as="option" key={index}>
-                            {category}
+                            {categoryItem}
                           </Text>
                         ))}
                       </Select>

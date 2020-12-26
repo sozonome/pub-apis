@@ -60,9 +60,9 @@ const All = () => {
   const filterData = () => {
     const kword = keyword.toLowerCase();
     const updateFilteredData = sortedData.filter(
-      (data) =>
-        data.API.toLowerCase().indexOf(kword) > -1 ||
-        data.Description.toLowerCase().indexOf(kword) > -1
+      (entry) =>
+        entry.API.toLowerCase().indexOf(kword) > -1 ||
+        entry.Description.toLowerCase().indexOf(kword) > -1
     );
 
     setFiltedData(updateFilteredData);
@@ -70,17 +70,17 @@ const All = () => {
 
   useEffect(() => {
     if (data?.entries) {
-      const updateSortedData =
-        data &&
-        data.entries.sort((a, b) => {
-          if (a.API < b.API) {
-            return -1;
-          }
-          if (a.API > b.API) {
-            return 1;
-          }
-          return 0;
-        });
+      const updateSortedData = data && data.entries;
+
+      updateSortedData.sort((a, b) => {
+        if (a.API < b.API) {
+          return -1;
+        }
+        if (a.API > b.API) {
+          return 1;
+        }
+        return 0;
+      });
       setSortedData(updateSortedData);
     }
   }, [data]);
