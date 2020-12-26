@@ -12,6 +12,7 @@ type ItemContainerProps = {
 const ItemContainer = ({ entries, useAccordion }: ItemContainerProps) => {
   return (
     <Grid
+      marginY={4}
       templateColumns={["repeat(1)", "repeat(1)", "repeat(2, 1fr)"]}
       gap={2}
     >
