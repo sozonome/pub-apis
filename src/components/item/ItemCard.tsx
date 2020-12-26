@@ -67,7 +67,9 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
     >
       <Box>
         <Heading fontSize="lg">{APIName}</Heading>
-        <Text>{Description}</Text>
+        <Text marginY={4} fontSize="lg">
+          {Description}
+        </Text>
       </Box>
 
       {useAccordion ? (
@@ -88,7 +90,7 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
         <APIDetails {...apiDetailsProps} />
       )}
 
-      <Box>
+      <Box marginTop={4}>
         <Text>API Link: </Text>
         <Grid templateColumns={["repeat(2, 1fr)"]} gap={2}>
           <Link href={APILink} isExternal>

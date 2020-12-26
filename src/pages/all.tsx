@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 import ItemContainer from "../components/item/ItemContainer";
 import { ListItem } from "../components/models/list";
@@ -113,13 +114,19 @@ const All = () => {
     currentPage,
     handleChangePage,
     totalPage: pagedData.length - 1,
+    pagedData,
   };
 
   return (
     <Box>
       <Link href="/" passHref>
-        <Button isFullWidth size="lg" marginBottom={8}>
-          Search
+        <Button
+          isFullWidth
+          leftIcon={<AiOutlineArrowLeft />}
+          size="lg"
+          marginBottom={8}
+        >
+          back
         </Button>
       </Link>
       <Skeleton isLoaded={!isLoading} minHeight="80vh">
@@ -148,20 +155,34 @@ type PageNavigationButtonsProps = {
   currentPage: number;
   handleChangePage: (type: "next" | "prev") => () => void;
   totalPage: number;
+  pagedData: Array<Array<ListItem>>;
 };
 
 const PageNavigationButtons = ({
   currentPage,
   handleChangePage,
   totalPage,
+  pagedData,
 }: PageNavigationButtonsProps) => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" marginY={4} gap={2}>
-      <Button disabled={currentPage === 0} onClick={handleChangePage("prev")}>
+    <Grid
+      hidden={totalPage === 0 || pagedData.length === 0}
+      templateColumns="repeat(2, 1fr)"
+      marginY={4}
+      gap={2}
+    >
+      <Button
+        disabled={currentPage === 0}
+        leftIcon={<AiOutlineArrowLeft />}
+        colorScheme="cyan"
+        onClick={handleChangePage("prev")}
+      >
         Prev
       </Button>
       <Button
         disabled={currentPage === totalPage}
+        rightIcon={<AiOutlineArrowRight />}
+        colorScheme="yellow"
         onClick={handleChangePage("next")}
       >
         Next
