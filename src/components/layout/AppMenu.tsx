@@ -10,12 +10,16 @@ import {
   IconButton,
   Image,
   Link,
+  Spinner,
   Text,
   useColorMode,
   useDisclosure,
   useMediaQuery,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
+
+import { APP_NAME } from "../../pages/_document";
 
 type AppsType = {
   name: string;
@@ -24,44 +28,25 @@ type AppsType = {
   url: string;
 };
 
-const apps: AppsType[] = [
-  {
-    name: "Covid-19 Data",
-    description: "Monitor global covid-19 stats",
-    icon: "https://sznm.dev/app_icons/covid-19-data.svg",
-    url: "https://covid19.sznm.dev",
-  },
-  {
-    name: "Add to Calendar",
-    description: "Add to Calendar link / button generator.",
-    icon: "https://sznm.dev/app_icons/add-to-calendar.svg",
-    url: "https://addtocal.sznm.dev",
-  },
-  {
-    name: "InstaDLD",
-    description: "Instagram Post downloader. Support multipost download",
-    icon: "https://sznm.dev/app_icons/instadld.svg",
-    url: "https://instadld.sznm.dev",
-  },
-  {
-    name: "GaaS",
-    description: "Greeting as a Service",
-    icon: "https://sznm.dev/app_icons/greet-gaas.svg",
-    url: "https://gaas.sznm.dev",
-  },
-  {
-    name: "muvees",
-    description: "Just another movieDB app",
-    icon: "https://sznm.dev/app_icons/popcorn.png",
-    url: "https://muvees.sznm.dev",
-  },
-];
+const PROJECT_LIST_URL = `${process.env.NEXT_PUBLIC_PROJECTS_LIST_URL}`;
 
 const AppMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
 
   const [isBiggerThanMobile] = useMediaQuery("(min-width: 480px)");
+  const [apps, setApps] = useState<Array<AppsType>>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${PROJECT_LIST_URL}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setApps(result);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <>
@@ -72,7 +57,6 @@ const AppMenu = () => {
         background="none"
         onClick={onOpen}
       />
-
       <Drawer
         placement={isBiggerThanMobile ? "right" : "top"}
         isOpen={isOpen}
@@ -86,26 +70,33 @@ const AppMenu = () => {
           </DrawerHeader>
 
           <DrawerBody>
-            {apps.map(({ name, icon, url, description }, index) => (
-              <Link key={index} href={url} _hover={{ textDecoration: "none" }}>
-                <Flex
-                  marginY={4}
-                  alignItems="center"
-                  padding={2}
-                  borderRadius={12}
-                  _hover={{
-                    backgroundColor:
-                      colorMode === "light" ? "gray.200" : "gray.600",
-                  }}
+            {loading && <Spinner />}
+            {apps
+              .filter((app) => app.name !== APP_NAME)
+              .map(({ name, icon, url, description }, index) => (
+                <Link
+                  key={index}
+                  href={url}
+                  _hover={{ textDecoration: "none" }}
                 >
-                  <Image src={icon} width={12} />
-                  <Box marginLeft={4}>
-                    <Heading size="sm">{name}</Heading>
-                    {description && <Text fontSize="xs">{description}</Text>}
-                  </Box>
-                </Flex>
-              </Link>
-            ))}
+                  <Flex
+                    marginY={4}
+                    alignItems="center"
+                    padding={2}
+                    borderRadius={12}
+                    _hover={{
+                      backgroundColor:
+                        colorMode === "light" ? "gray.200" : "gray.600",
+                    }}
+                  >
+                    <Image src={icon} width={12} />
+                    <Box marginLeft={4}>
+                      <Heading size="sm">{name}</Heading>
+                      {description && <Text fontSize="xs">{description}</Text>}
+                    </Box>
+                  </Flex>
+                </Link>
+              ))}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

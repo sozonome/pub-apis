@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const APP_NAME = "Public APIs";
+export const APP_NAME = "Public APIs";
 const APP_DESCRIPTION = "Find public APIs for your next projects.";
 
 class MyDocument extends Document {
