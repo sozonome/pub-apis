@@ -28,11 +28,7 @@ type AppsType = {
   url: string;
 };
 
-const PROJECT_LIST_URL = `${
-  process.env.NODE_ENV === "development"
-    ? process.env.NEXT_PUBLIC_PROXY_URL
-    : ""
-}${process.env.NEXT_PUBLIC_PROJECTS_LIST_URL}`;
+const PROJECT_LIST_URL = `${process.env.NEXT_PUBLIC_PROJECTS_LIST_URL}`;
 
 const AppMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

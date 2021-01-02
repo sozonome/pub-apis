@@ -18,8 +18,8 @@ const Badges = () => {
         <Image
           src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=279188&theme=${colorMode}`}
           alt="Public APIs - Find a public API for your next project | Product Hunt"
-          width="250"
-          height="54"
+          width="200"
+          height="43"
         />
       </Link>
 
@@ -30,8 +30,8 @@ const Badges = () => {
         <Image
           src={`https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=279188&theme=${colorMode}&period=daily`}
           alt="Public APIs - Find a public API for your next project | Product Hunt"
-          width="250"
-          height="54"
+          width="200"
+          height="43"
         />
       </Link>
     </Grid>
