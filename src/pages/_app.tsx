@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
-import "fontsource-jost/latin.css";
+import "@fontsource/jost/latin.css";
 
 import Layout from "../components/layout";
 
