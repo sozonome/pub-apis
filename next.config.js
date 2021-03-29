@@ -8,6 +8,9 @@ module.exports = withPWA({
     register: true,
   },
   images: {
-    domains: ["api.producthunt.com"]
-  }
+    domains: ["api.producthunt.com"],
+  },
+  future: {
+    webpack5: true,
+  },
 });
