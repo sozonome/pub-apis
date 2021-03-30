@@ -7,7 +7,7 @@ const Footer = () => {
       as="footer"
       width="full"
       alignSelf="flex-end"
-      height={[48, 36]}
+      // height={[120, 36]}
       justifyContent="center"
     >
       <Box textAlign="center">
