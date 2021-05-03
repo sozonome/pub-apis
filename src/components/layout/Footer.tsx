@@ -11,16 +11,16 @@ const Footer = () => {
       justifyContent="center"
     >
       <Box textAlign="center">
-        <Text>
+        <Text fontSize={["sm", "md"]}>
           2020 -{" "}
           <Link href="https://sznm.dev" fontWeight="bold" isExternal>
             sznm.dev
           </Link>
         </Text>
 
-        <Text fontSize="sm">Powered by https://api.publicapis.org/</Text>
-
-        <Badges />
+        <Text fontSize={["xs", "sm"]}>
+          Powered by https://api.publicapis.org/
+        </Text>
       </Box>
     </Flex>
   );

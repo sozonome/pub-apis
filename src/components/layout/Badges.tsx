@@ -5,7 +5,12 @@ const Badges = () => {
   const { colorMode } = useColorMode();
 
   return (
-    <Grid width="full" templateColumns={["repeat(2, 1fr)"]} gap={2} marginY={4}>
+    <Grid
+      width="full"
+      templateColumns={["repeat(2, 1fr)", "1fr"]}
+      gap={2}
+      marginY={4}
+    >
       <Link
         href="https://www.producthunt.com/posts/public-apis-3?utm_source=badge-golden-kitty-badge&utm_medium=badge&utm_souce=badge-public-apis-3"
         isExternal

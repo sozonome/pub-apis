@@ -63,7 +63,7 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
       padding={4}
       border="1px solid"
       borderColor={colorMode === "light" ? "gray.200" : "gray.600"}
-      borderRadius={12}
+      borderRadius={24}
     >
       <Box>
         <Heading fontSize="lg">{APIName}</Heading>

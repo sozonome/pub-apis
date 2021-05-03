@@ -102,13 +102,12 @@ const SearchContainer = () => {
           <FormControl>
             <Input
               type="text"
-              borderRadius={12}
               textAlign="center"
               name="queryParams.title"
               value={title}
               onChange={handleChange}
               placeholder="search API name"
-              fontWeight="bold"
+              fontWeight="semibold"
               size="lg"
             />
           </FormControl>

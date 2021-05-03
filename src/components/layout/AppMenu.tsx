@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 
 import { APP_NAME } from "../../pages/_document";
+import Badges from "./Badges";
 
 type AppsType = {
   name: string;
@@ -97,6 +98,11 @@ const AppMenu = () => {
                   </Flex>
                 </Link>
               ))}
+
+            <Box marginTop={8}>
+              <Text>Public APIs</Text>
+              <Badges />
+            </Box>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
