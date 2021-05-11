@@ -2,6 +2,7 @@ import {
   Box,
   Drawer,
   DrawerBody,
+  DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
@@ -66,6 +67,7 @@ const AppMenu = () => {
         <DrawerOverlay />
 
         <DrawerContent>
+          <DrawerCloseButton />
           <DrawerHeader>
             <Heading size="xs">More from sznm.dev</Heading>
           </DrawerHeader>
