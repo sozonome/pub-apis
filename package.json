@@ -28,7 +28,7 @@
     "swr": "^0.5.5"
   },
   "devDependencies": {
-    "@types/node": "^15.0.1",
+    "@types/node": "^15.0.2",
     "@types/react": "^17.0.4",
     "prettier": "^2.2.1",
     "standard-version": "^9.2.0",
