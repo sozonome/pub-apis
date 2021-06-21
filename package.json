@@ -12,12 +12,12 @@
     "push-release": "git push --follow-tags origin main"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.2",
+    "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@fontsource/jost": "^4.4.5",
     "axios": "^0.21.1",
-    "formik": "^2.2.8",
+    "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "next": "^10.2.3",
     "next-pwa": "^5.2.21",
