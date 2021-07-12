@@ -7,20 +7,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettify": "prettier --write src/",
+    "format": "prettier --write src",
+    "up-latest": "yarn upgrade-interactive --latest",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.4",
+    "@chakra-ui/react": "^1.6.5",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@fontsource/jost": "^4.4.5",
+    "@fontsource/jost": "^4.5.0",
     "axios": "^0.21.1",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
-    "next": "^10.2.3",
-    "next-pwa": "^5.2.21",
+    "next": "^11.0.1",
+    "next-pwa": "^5.2.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
@@ -28,10 +29,10 @@
     "swr": "^0.5.6"
   },
   "devDependencies": {
-    "@types/node": "^15.12.4",
-    "@types/react": "^17.0.11",
+    "@types/node": "^16.3.1",
+    "@types/react": "^17.0.14",
     "prettier": "^2.3.2",
     "standard-version": "^9.3.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.5"
   }
 }
