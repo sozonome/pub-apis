@@ -33,3 +33,8 @@ You can start editing the page by modifying `src/pages/index.js`. The page auto-
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [Chakra UI](https://chakra-ui.com)
 - [TypeScript](https://typescriptlang.org)
+
+## TODO
+
+- [ ] setup lint
+- [ ] setup pre-commit hooks (husky, lint-staged)
