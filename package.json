@@ -18,7 +18,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@fontsource/jost": "^4.5.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "next": "^11.1.2",
