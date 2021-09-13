@@ -14,7 +14,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.6",
+    "@chakra-ui/react": "^1.6.7",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@fontsource/jost": "^4.5.0",
@@ -37,8 +37,8 @@
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "standard-version": "^9.3.1",
-    "typescript": "^4.3.5",
-    "husky": "^7.0.0"
+    "typescript": "^4.4.2",
+    "husky": "^7.0.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
