@@ -1,10 +1,14 @@
 import { Box, Flex } from "@chakra-ui/react";
 
-import Header from "./Header";
 import Footer from "./Footer";
+import Header from "./Header";
 import Meta from "./Meta";
 
-const Layout = ({ children }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <Box transition="0.5s ease-out">
       <Meta />

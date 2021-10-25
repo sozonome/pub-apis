@@ -21,12 +21,8 @@ import {
 import { useFormik } from "formik";
 import { ChangeEvent, ReactText, useState } from "react";
 
-import {
-  ListQuery,
-  useAPICategories,
-  useAPIList,
-} from "../../helpers/fetchHooks";
-import ItemContainer from "../item/ItemContainer";
+import ItemContainer from "components/item/ItemContainer";
+import { ListQuery, useAPICategories, useAPIList } from "utils/fetchHooks";
 
 type SearchFormValueType = {
   queryParams: ListQuery;
@@ -46,6 +42,16 @@ const INITIAL_VALUES: SearchFormValueType = {
 };
 
 const SearchContainer = () => {
+  const [searchQueries, setSearchQueries] = useState<ListQuery>();
+  const [isRandomSearch, setIsRandomSearch] = useState<boolean>(false);
+  const [shouldFetch, setShouldFetch] = useState<boolean>(false);
+
+  const {
+    data: searchResult,
+    isLoading: isLoadingSearchResult,
+    isError,
+  } = useAPIList(shouldFetch, searchQueries, isRandomSearch);
+
   const {
     values: {
       queryParams: { title, description, https, category },
@@ -67,16 +73,6 @@ const SearchContainer = () => {
       setShouldFetch(true);
     },
   });
-
-  const [searchQueries, setSearchQueries] = useState<ListQuery>(undefined);
-  const [isRandomSearch, setIsRandomSearch] = useState<boolean>(false);
-  const [shouldFetch, setShouldFetch] = useState<boolean>(false);
-
-  const {
-    data: searchResult,
-    isLoading: isLoadingSearchResult,
-    isError,
-  } = useAPIList(shouldFetch, searchQueries, isRandomSearch);
 
   const { data: categories } = useAPICategories();
 
@@ -176,8 +172,8 @@ const SearchContainer = () => {
                         value={category}
                         onChange={handleChange}
                       >
-                        {categories?.map((categoryItem: string, index) => (
-                          <Text as="option" key={index}>
+                        {categories?.map((categoryItem: string) => (
+                          <Text as="option" key={categoryItem}>
                             {categoryItem}
                           </Text>
                         ))}

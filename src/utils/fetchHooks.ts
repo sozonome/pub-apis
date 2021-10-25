@@ -1,14 +1,14 @@
 import useSWR from "swr";
 
-import { fetcher } from "./fetcher";
+import { ListItem } from "components/models/list";
 
-import { ListItem } from "../components/models/list";
+import { fetcher } from "./fetcher";
 
 const API_URL = `https://api.publicapis.org`;
 
 export type SWRHookResp = {
   isLoading: boolean;
-  isError: any;
+  isError: unknown;
 };
 
 export type CategoryRes = SWRHookResp & {

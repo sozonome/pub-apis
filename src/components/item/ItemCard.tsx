@@ -18,7 +18,31 @@ import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { ImCopy } from "react-icons/im";
 
-import { ListItem } from "../models/list";
+import { ListItem } from "components/models/list";
+
+type APIDetailsProps = Omit<ListItem, "API" | "Description" | "Link">;
+
+const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
+  return (
+    <>
+      <Text>Category: {Category}</Text>
+      <Text>Support: </Text>
+      <Box marginLeft={4}>
+        <Flex alignItems="center">
+          <Text marginRight={2}>HTTPS :</Text>
+          {HTTPS ? (
+            <AiFillCheckCircle color="green" />
+          ) : (
+            <AiFillCloseCircle color="red" />
+          )}
+        </Flex>
+
+        <Text>CORS : {Cors}</Text>
+      </Box>
+      {Auth && <Text>Auth : {Auth}</Text>}
+    </>
+  );
+};
 
 type ItemCardProps = {
   value: ListItem;
@@ -108,30 +132,6 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
         </Grid>
       </Box>
     </Box>
-  );
-};
-
-type APIDetailsProps = Omit<ListItem, "API" | "Description" | "Link">;
-
-const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
-  return (
-    <>
-      <Text>Category: {Category}</Text>
-      <Text>Support: </Text>
-      <Box marginLeft={4}>
-        <Flex alignItems="center">
-          <Text marginRight={2}>HTTPS :</Text>
-          {HTTPS ? (
-            <AiFillCheckCircle color="green" />
-          ) : (
-            <AiFillCloseCircle color="red" />
-          )}
-        </Flex>
-
-        <Text>CORS : {Cors}</Text>
-      </Box>
-      {Auth && <Text>Auth : {Auth}</Text>}
-    </>
   );
 };
 

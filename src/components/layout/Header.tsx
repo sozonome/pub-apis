@@ -1,6 +1,7 @@
 import { Flex, Heading, Box, Text, useBreakpointValue } from "@chakra-ui/react";
 
-import AccessibleLink from "../AccessibleLink";
+import AccessibleLink from "components/AccessibleLink";
+
 import AppMenu from "./AppMenu";
 import ThemeToggle from "./ThemeToggle";
 
