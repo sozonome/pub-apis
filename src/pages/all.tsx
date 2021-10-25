@@ -10,12 +10,51 @@ import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-import ItemContainer from "../components/item/ItemContainer";
-import { ListItem } from "../components/models/list";
-
-import { useAPIList } from "../helpers/fetchHooks";
+import ItemContainer from "components/item/ItemContainer";
+import { ListItem } from "components/models/list";
+import { useAPIList } from "utils/fetchHooks";
 
 const ITEM_PER_PAGE = 20;
+
+type PageNavigationButtonsProps = {
+  currentPage: number;
+  handleChangePage: (type: "next" | "prev") => () => void;
+  totalPage: number;
+  pagedData: Array<Array<ListItem>>;
+};
+
+const PageNavigationButtons = ({
+  currentPage,
+  handleChangePage,
+  totalPage,
+  pagedData,
+}: PageNavigationButtonsProps) => {
+  return (
+    <Grid
+      hidden={totalPage === 0 || pagedData.length === 0}
+      templateColumns="repeat(2, 1fr)"
+      marginY={4}
+      gap={2}
+    >
+      <Button
+        disabled={currentPage === 0}
+        leftIcon={<AiOutlineArrowLeft />}
+        colorScheme="cyan"
+        onClick={handleChangePage("prev")}
+      >
+        Prev
+      </Button>
+      <Button
+        disabled={currentPage === totalPage}
+        rightIcon={<AiOutlineArrowRight />}
+        colorScheme="yellow"
+        onClick={handleChangePage("next")}
+      >
+        Next
+      </Button>
+    </Grid>
+  );
+};
 
 const All = () => {
   const { data, isLoading } = useAPIList(true);
@@ -33,7 +72,7 @@ const All = () => {
     );
     const updatePagedData: Array<Array<ListItem>> = [];
 
-    for (let i = 0; i < totalPage; i++) {
+    for (let i = 0; i < totalPage; i += 1) {
       const start = i * ITEM_PER_PAGE;
       const end =
         i === totalPage - 1
@@ -44,7 +83,7 @@ const All = () => {
 
       const currentPageData: Array<ListItem> = [];
 
-      for (let j = start; j < end; j++) {
+      for (let j = start; j < end; j += 1) {
         currentPageData.push(
           keyword.length && filteredData.length
             ? filteredData[j]
@@ -88,6 +127,7 @@ const All = () => {
 
   useEffect(() => {
     paginateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortedData, filteredData]);
 
   useEffect(() => {
@@ -97,6 +137,7 @@ const All = () => {
     } else {
       paginateData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword]);
 
   const handleChangePage = (type: "next" | "prev") => () => {
@@ -148,46 +189,6 @@ const All = () => {
         <PageNavigationButtons {...pageNavigationButtonsProps} />
       </Skeleton>
     </Box>
-  );
-};
-
-type PageNavigationButtonsProps = {
-  currentPage: number;
-  handleChangePage: (type: "next" | "prev") => () => void;
-  totalPage: number;
-  pagedData: Array<Array<ListItem>>;
-};
-
-const PageNavigationButtons = ({
-  currentPage,
-  handleChangePage,
-  totalPage,
-  pagedData,
-}: PageNavigationButtonsProps) => {
-  return (
-    <Grid
-      hidden={totalPage === 0 || pagedData.length === 0}
-      templateColumns="repeat(2, 1fr)"
-      marginY={4}
-      gap={2}
-    >
-      <Button
-        disabled={currentPage === 0}
-        leftIcon={<AiOutlineArrowLeft />}
-        colorScheme="cyan"
-        onClick={handleChangePage("prev")}
-      >
-        Prev
-      </Button>
-      <Button
-        disabled={currentPage === totalPage}
-        rightIcon={<AiOutlineArrowRight />}
-        colorScheme="yellow"
-        onClick={handleChangePage("next")}
-      >
-        Next
-      </Button>
-    </Grid>
   );
 };
 

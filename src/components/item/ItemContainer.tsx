@@ -1,8 +1,8 @@
 import { Grid } from "@chakra-ui/react";
 
-import ItemCard from "./ItemCard";
+import { ListItem } from "components/models/list";
 
-import { ListItem } from "../models/list";
+import ItemCard from "./ItemCard";
 
 type ItemContainerProps = {
   entries: Array<ListItem>;
@@ -16,8 +16,8 @@ const ItemContainer = ({ entries, useAccordion }: ItemContainerProps) => {
       templateColumns={["repeat(1)", "repeat(1)", "repeat(2, 1fr)"]}
       gap={2}
     >
-      {entries.map((entry, index) => (
-        <ItemCard value={entry} key={index} useAccordion={useAccordion} />
+      {entries.map((entry) => (
+        <ItemCard value={entry} key={entry.API} useAccordion={useAccordion} />
       ))}
     </Grid>
   );
