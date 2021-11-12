@@ -1,5 +1,6 @@
 const withPWA = require("next-pwa");
 
+/** @type {import('next').NextConfig} */
 module.exports = withPWA({
   pwa: {
     disable: process.env.NODE_ENV === "development",
@@ -9,5 +10,6 @@ module.exports = withPWA({
   },
   images: {
     domains: ["api.producthunt.com"],
-  }
+  },
+  reactStrictMode: true,
 });
