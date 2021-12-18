@@ -16,8 +16,8 @@ export const usePublicApiSWR = <ResType>(
   isReady = true
 ): SWRHookResponse<ResType> => {
   const { data, error, mutate } = useSWR<ResType>(
-    [path, params],
-    isReady ? publicApiFetcher : null,
+    isReady ? [path, params] : null,
+    publicApiFetcher,
     {
       fallbackData,
     }
