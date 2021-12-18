@@ -1,4 +1,3 @@
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, {
   Html,
   Head,
@@ -10,7 +9,6 @@ import Document, {
 import { UMAMI_SRC, UMAMI_WEBSITE_ID } from "constants/umami";
 
 export const APP_NAME = "Public APIs";
-const APP_DESCRIPTION = "Find public APIs for your next projects.";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -29,7 +27,6 @@ class MyDocument extends Document {
             content="default"
           />
           <meta name="apple-mobile-web-app-title" content={APP_NAME} />
-          <meta name="description" content={APP_DESCRIPTION} />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#FFFFFF" />
