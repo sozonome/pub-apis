@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
       <Flex
         margin="0 auto"
         flexWrap="wrap"
-        maxWidth={800}
+        maxWidth={1200}
         width="100%"
         padding={8}
         minHeight="100vh"
