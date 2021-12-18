@@ -19,9 +19,9 @@ import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { ImCopy } from "react-icons/im";
 
-import { ListItem } from "components/models/list";
+import { APIEntry } from "services/publicapis/list/types";
 
-type APIDetailsProps = Omit<ListItem, "API" | "Description" | "Link">;
+type APIDetailsProps = Omit<APIEntry, "API" | "Description" | "Link">;
 
 const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
   return (
@@ -49,7 +49,7 @@ const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
 };
 
 type ItemCardProps = {
-  value: ListItem;
+  value: APIEntry;
   useAccordion?: boolean;
 };
 

@@ -1,11 +1,11 @@
 import { Grid } from "@chakra-ui/react";
 
-import { ListItem } from "components/models/list";
+import { APIEntry } from "services/publicapis/list/types";
 
 import ItemCard from "./ItemCard";
 
 type ItemContainerProps = {
-  entries: Array<ListItem>;
+  entries: Array<APIEntry>;
   useAccordion?: boolean;
 };
 
@@ -22,7 +22,11 @@ const ItemContainer = ({ entries, useAccordion }: ItemContainerProps) => {
       gap={8}
     >
       {entries.map((entry) => (
-        <ItemCard value={entry} key={entry.API} useAccordion={useAccordion} />
+        <ItemCard
+          value={entry}
+          key={`${entry.API}-${entry.Link}`}
+          useAccordion={useAccordion}
+        />
       ))}
     </Grid>
   );

@@ -1,5 +1,6 @@
 import { Box, Button, FormControl, Input, Skeleton } from "@chakra-ui/react";
 import chunk from "lodash/chunk";
+import debounce from "lodash/debounce";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -61,11 +62,15 @@ const APIListPage = ({ fallbackData }: APIListPageProps) => {
     [currentPage]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChangeKeyword = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
+    debounce((event: ChangeEvent<HTMLInputElement>) => {
       setKeyword(event.target.value.toLowerCase());
-    },
-    []
+      if (currentPage !== 0) {
+        setCurrentPage(0);
+      }
+    }, 200),
+    [currentPage]
   );
 
   const pageNavigationButtonsProps: PageNavigationButtonsProps = useMemo(
