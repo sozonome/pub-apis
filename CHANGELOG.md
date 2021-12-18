@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/sozonome/pub-apis/compare/v1.0.1...v1.1.0) (2021-12-18)
+
+
+### Features
+
+* **analytics:** switch from google analytics to umami ([#31](https://github.com/sozonome/pub-apis/issues/31)) ([91a498d](https://github.com/sozonome/pub-apis/commit/91a498d8b265274a6fffab76a6b8663d8a6121a4))
+* **layout:** add close button for menu drawer ([be57f4f](https://github.com/sozonome/pub-apis/commit/be57f4fff98a510f7807bfd69b8bb282fb360e81))
+
 ### [1.0.1](https://github.com/sozonome/pub-apis/compare/v1.0.0...v1.0.1) (2021-05-03)
 
 ## 1.0.0 (2021-03-28)
