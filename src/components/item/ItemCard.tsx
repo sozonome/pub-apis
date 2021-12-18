@@ -10,6 +10,7 @@ import {
   Grid,
   Heading,
   Link,
+  Stack,
   Text,
   useColorMode,
   useToast,
@@ -24,23 +25,26 @@ type APIDetailsProps = Omit<ListItem, "API" | "Description" | "Link">;
 
 const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
   return (
-    <>
+    <Stack>
       <Text>Category: {Category}</Text>
-      <Text>Support: </Text>
-      <Box marginLeft={4}>
-        <Flex alignItems="center">
-          <Text marginRight={2}>HTTPS :</Text>
-          {HTTPS ? (
-            <AiFillCheckCircle color="green" />
-          ) : (
-            <AiFillCloseCircle color="red" />
-          )}
-        </Flex>
 
-        <Text>CORS : {Cors}</Text>
+      <Box>
+        <Text>Support: </Text>
+        <Box marginLeft={4}>
+          <Flex alignItems="center">
+            <Text marginRight={2}>HTTPS :</Text>
+            {HTTPS ? (
+              <AiFillCheckCircle color="green" />
+            ) : (
+              <AiFillCloseCircle color="red" />
+            )}
+          </Flex>
+
+          <Text>CORS : {Cors}</Text>
+        </Box>
+        {Auth && <Text>Auth : {Auth}</Text>}
       </Box>
-      {Auth && <Text>Auth : {Auth}</Text>}
-    </>
+    </Stack>
   );
 };
 
@@ -83,15 +87,16 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
   };
 
   return (
-    <Box
-      padding={4}
+    <Grid
+      padding={{ base: 4, md: 8 }}
       border="1px solid"
       borderColor={colorMode === "light" ? "gray.200" : "gray.600"}
       borderRadius={24}
+      gap={4}
     >
       <Box>
         <Heading fontSize="lg">{APIName}</Heading>
-        <Text marginY={4} fontSize="lg">
+        <Text marginY={2} fontSize="lg">
           {Description}
         </Text>
       </Box>
@@ -114,7 +119,7 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
         <APIDetails {...apiDetailsProps} />
       )}
 
-      <Box marginTop={4}>
+      <Box marginTop={4} alignSelf="flex-end">
         <Text>API Link: </Text>
         <Grid templateColumns={["repeat(2, 1fr)"]} gap={2}>
           <Link href={APILink} isExternal>
@@ -131,7 +136,7 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
           </Button>
         </Grid>
       </Box>
-    </Box>
+    </Grid>
   );
 };
 
