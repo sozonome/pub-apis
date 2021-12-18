@@ -1,9 +1,11 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import "@fontsource/jost/latin.css";
 
+import defaultSEOConfig from "../../next-seo.config";
 import Layout from "components/layout";
 import customTheme from "styles/customTheme";
 import "styles/globals.css";
@@ -17,6 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
         />
       </Head>
+      <DefaultSeo {...defaultSEOConfig} />
       <NextNProgress />
       <Layout>
         <Component {...pageProps} />
