@@ -36,10 +36,7 @@ class MyDocument extends Document {
             sizes="180x180"
             href="/icon/apple-touch-icon.png"
           />
-          <link
-            rel="shortcut icon"
-            href="https://sznm.dev/app_icons/pub-apis.svg"
-          />
+          <link rel="icon" href="https://sznm.dev/app_icons/pub-apis.svg" />
           <link rel="manifest" href="/manifest.json" />
 
           {/* umami self-hosted analytics */}
