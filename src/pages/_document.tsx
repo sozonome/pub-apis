@@ -6,7 +6,7 @@ import Document, {
   DocumentContext,
 } from "next/document";
 
-import { UMAMI_SRC, UMAMI_WEBSITE_ID } from "constants/umami";
+import { UMAMI_SRC, UMAMI_WEBSITE_ID } from "lib/constants/umami";
 
 export const APP_NAME = "Public APIs";
 

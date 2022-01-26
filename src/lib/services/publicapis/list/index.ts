@@ -1,4 +1,7 @@
-import { usePublicApiSWR, publicApiFetcher } from "services/publicapis/utils";
+import {
+  usePublicApiSWR,
+  publicApiFetcher,
+} from "lib/services/publicapis/utils";
 
 import { APIListParams, APIListResponse } from "./types";
 

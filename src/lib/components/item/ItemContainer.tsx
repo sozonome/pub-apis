@@ -1,6 +1,6 @@
 import { Grid } from "@chakra-ui/react";
 
-import { APIEntry } from "services/publicapis/list/types";
+import { APIEntry } from "lib/services/publicapis/list/types";
 
 import ItemCard from "./ItemCard";
 

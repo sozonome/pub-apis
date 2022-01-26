@@ -1,11 +1,11 @@
 import { Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
 
-import SearchContainer from "components/search/SearchContainer";
-import { useCategoryList } from "services/publicapis/category";
-import { trackEventToUmami } from "utils/trackEvent";
+import SearchContainer from "lib/components/search/SearchContainer";
+import { useCategoryList } from "lib/services/publicapis/category";
+import { trackEventToUmami } from "lib/utils/trackEvent";
 
-import { HomePageProps } from "./types";
+import type { HomePageProps } from "./types";
 
 const Home = ({ categoryFallbackData }: HomePageProps) => {
   const handleClickAll = () => {

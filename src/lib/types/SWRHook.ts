@@ -1,4 +1,4 @@
-import { SWRResponse } from "swr";
+import type { SWRResponse } from "swr";
 
 export type SWRHookResponse<DataType, ErrorType = boolean> = {
   isLoading: boolean;
