@@ -1,4 +1,7 @@
-import { publicApiFetcher, usePublicApiSWR } from "services/publicapis/utils";
+import {
+  publicApiFetcher,
+  usePublicApiSWR,
+} from "lib/services/publicapis/utils";
 
 import { CategoryResponse } from "./types";
 

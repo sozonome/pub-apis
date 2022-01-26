@@ -5,11 +5,11 @@ import Link from "next/link";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
-import ItemContainer from "components/item/ItemContainer";
+import ItemContainer from "lib/components/item/ItemContainer";
 import PageNavigationButtons, {
   PageNavigationButtonsProps,
-} from "components/list/PageNavigationButtons";
-import { useApiList } from "services/publicapis/list";
+} from "lib/components/list/PageNavigationButtons";
+import { useApiList } from "lib/services/publicapis/list";
 
 import { APIListPageProps } from "./types";
 

@@ -1,10 +1,9 @@
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 
-import { getApiList } from "services/publicapis/list";
+import { getApiList } from "lib/services/publicapis/list";
 
-import { APIListPageProps } from "./types";
+import type { APIListPageProps } from "./types";
 
-// eslint-disable-next-line import/prefer-default-export
 export const getStaticProps: GetStaticProps<APIListPageProps> = async () => {
   try {
     const fallbackData = await getApiList();

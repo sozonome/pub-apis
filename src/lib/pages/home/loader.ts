@@ -1,10 +1,9 @@
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 
-import { getCategoryList } from "services/publicapis/category";
+import { getCategoryList } from "lib/services/publicapis/category";
 
-import { HomePageProps } from "./types";
+import type { HomePageProps } from "./types";
 
-// eslint-disable-next-line import/prefer-default-export
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   try {
     const categoryFallbackData = await getCategoryList();

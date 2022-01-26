@@ -22,10 +22,10 @@ import {
 import { FormikErrors, useFormik } from "formik";
 import { ChangeEvent, ReactText, useState } from "react";
 
-import ItemContainer from "components/item/ItemContainer";
-import { useApiList } from "services/publicapis/list";
-import { APIListParams } from "services/publicapis/list/types";
-import { formikSubmitButtonDisabled } from "utils/formikSubmitButtonDisabled";
+import ItemContainer from "lib/components/item/ItemContainer";
+import { useApiList } from "lib/services/publicapis/list";
+import { APIListParams } from "lib/services/publicapis/list/types";
+import { formikSubmitButtonDisabled } from "lib/utils/formikSubmitButtonDisabled";
 
 import { SearchContainerProps } from "./types";
 
