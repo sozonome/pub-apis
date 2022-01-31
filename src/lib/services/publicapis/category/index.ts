@@ -3,7 +3,7 @@ import {
   usePublicApiSWR,
 } from "lib/services/publicapis/utils";
 
-import { CategoryResponse } from "./types";
+import type { CategoryResponse } from "./types";
 
 const CATEGORY_RESOURCE_PATH = "/categories";
 

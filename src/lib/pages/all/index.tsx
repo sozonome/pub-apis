@@ -2,16 +2,16 @@ import { Box, Button, FormControl, Input, Skeleton } from "@chakra-ui/react";
 import chunk from "lodash/chunk";
 import debounce from "lodash/debounce";
 import Link from "next/link";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import type { ChangeEvent } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import ItemContainer from "lib/components/item/ItemContainer";
-import PageNavigationButtons, {
-  PageNavigationButtonsProps,
-} from "lib/components/list/PageNavigationButtons";
+import type { PageNavigationButtonsProps } from "lib/components/list/PageNavigationButtons";
+import PageNavigationButtons from "lib/components/list/PageNavigationButtons";
 import { useApiList } from "lib/services/publicapis/list";
 
-import { APIListPageProps } from "./types";
+import type { APIListPageProps } from "./types";
 
 const ITEM_PER_PAGE = 24;
 

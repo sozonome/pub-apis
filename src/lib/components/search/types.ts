@@ -1,4 +1,4 @@
-import { CategoryResponse } from "lib/services/publicapis/category/types";
+import type { CategoryResponse } from "lib/services/publicapis/category/types";
 
 export type SearchContainerProps = {
   categories?: CategoryResponse;
