@@ -19,7 +19,7 @@ import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import { ImCopy } from "react-icons/im";
 
-import { APIEntry } from "lib/services/publicapis/list/types";
+import type { APIEntry } from "lib/services/publicapis/list/types";
 
 type APIDetailsProps = Omit<APIEntry, "API" | "Description" | "Link">;
 

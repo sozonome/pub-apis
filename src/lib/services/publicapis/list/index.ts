@@ -3,7 +3,7 @@ import {
   publicApiFetcher,
 } from "lib/services/publicapis/utils";
 
-import { APIListParams, APIListResponse } from "./types";
+import type { APIListParams, APIListResponse } from "./types";
 
 const API_LIST_RESOURCE_PATH = (isRandom?: boolean) =>
   `/${isRandom ? "random" : "entries"}`;
