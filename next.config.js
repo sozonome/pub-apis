@@ -8,9 +8,11 @@ module.exports = withPWA({
     dest: "public",
     register: true,
   },
-  images: {
-    domains: ["api.producthunt.com"],
-  },
+  // images: {
+  //   domains: ["api.producthunt.com"],
+  //   // added in next.js 12.1.0 https://nextjs.org/docs/api-reference/next/image#dangerously-allow-svg
+  //   dangerouslyAllowSVG: true,
+  // },
   reactStrictMode: true,
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
