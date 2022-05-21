@@ -1,9 +1,8 @@
+import { ColorModeScript } from "@chakra-ui/react";
 import type { DocumentContext } from "next/document";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 import { UMAMI_SRC, UMAMI_WEBSITE_ID } from "lib/constants/umami";
-import { ColorModeScript } from "@chakra-ui/react";
-
 import customTheme from "lib/styles/customTheme";
 
 export const APP_NAME = "Public APIs";
