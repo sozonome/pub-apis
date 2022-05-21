@@ -20,7 +20,7 @@ const Home = ({ categoryFallbackData }: HomePageProps) => {
 
       <Box marginY={12}>
         <Link href="/all" passHref>
-          <Button isFullWidth onClick={handleClickAll}>
+          <Button width="full" onClick={handleClickAll}>
             I want to see the complete list
           </Button>
         </Link>

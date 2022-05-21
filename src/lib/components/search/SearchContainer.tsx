@@ -263,7 +263,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
         <Button
           disabled={searchButtonDisabled}
           colorScheme="teal"
-          isFullWidth
+          width="full"
           onClick={() => handleSubmit()}
           isLoading={isLoadingSearchResult}
         >
@@ -273,7 +273,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
           disabled={!dirty}
           size="sm"
           colorScheme="orange"
-          isFullWidth
+          width="full"
           onClick={() => resetForm()}
         >
           Reset Search Input

@@ -124,7 +124,7 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
         <Grid templateColumns={["repeat(2, 1fr)"]} gap={2}>
           <Link href={APILink} isExternal>
             <Button
-              isFullWidth
+              width="full"
               colorScheme="blue"
               leftIcon={<FiExternalLink />}
             >
