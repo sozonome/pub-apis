@@ -86,7 +86,7 @@ const APIListPage = ({ fallbackData }: APIListPageProps) => {
     <Box>
       <Link href="/" passHref>
         <Button
-          isFullWidth
+          width="full"
           leftIcon={<AiOutlineArrowLeft />}
           size="lg"
           marginBottom={8}
