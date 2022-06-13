@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/sozonome/pub-apis/compare/v1.1.0...v1.1.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* improve item rendering to use more unique key ([6b1fbd0](https://github.com/sozonome/pub-apis/commit/6b1fbd0273c68d0c771b526e2cddc10204eb29cd))
+* **layout:** switch next/image with chakra img ([#58](https://github.com/sozonome/pub-apis/issues/58)) ([e77570d](https://github.com/sozonome/pub-apis/commit/e77570d86f65d5e0a17cfec2d8ae80f662de3927))
+
 ## [1.1.0](https://github.com/sozonome/pub-apis/compare/v1.0.1...v1.1.0) (2021-12-18)
 
 
