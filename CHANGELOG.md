@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/sozonome/pub-apis/compare/v1.1.1...v1.1.2) (2022-06-22)
+
+
+### Bug Fixes
+
+* update category response type ([#63](https://github.com/sozonome/pub-apis/issues/63)) ([adf4249](https://github.com/sozonome/pub-apis/commit/adf4249cedc93f68cff1399c6d22d62f953b1d82))
+
 ### [1.1.1](https://github.com/sozonome/pub-apis/compare/v1.1.0...v1.1.1) (2022-06-13)
 
 
