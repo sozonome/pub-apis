@@ -1,5 +1,6 @@
 import { Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
+import * as React from "react";
 
 import SearchContainer from "lib/components/search/SearchContainer";
 import { useCategoryList } from "lib/services/publicapis/category";
@@ -12,7 +13,12 @@ const Home = ({ categoryFallbackData }: HomePageProps) => {
     trackEventToUmami("Home: click see complete list", "navigate");
   };
 
-  const { data: categories } = useCategoryList(categoryFallbackData);
+  const { data } = useCategoryList(categoryFallbackData);
+
+  const categories = React.useMemo(
+    () => data?.categories ?? [],
+    [data?.categories]
+  );
 
   return (
     <Box mb={8} marginX="auto" maxWidth={1000}>
