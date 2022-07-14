@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       props: {
         categoryFallbackData,
       },
-      revalidate: 60,
+      revalidate: 86400,
     };
   } catch {
     return {

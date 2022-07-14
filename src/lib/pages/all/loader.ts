@@ -11,6 +11,6 @@ export const getStaticProps: GetStaticProps<APIListPageProps> = async () => {
     props: {
       fallbackData,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 };
