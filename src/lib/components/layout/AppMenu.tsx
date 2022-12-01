@@ -20,6 +20,8 @@ import {
 import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 
+import { EVENT_TYPE_CTA } from "lib/constants/events";
+import { trackEvent } from "lib/utils/trackEvent";
 import { APP_NAME } from "pages/_document";
 
 import Badges from "./Badges";
@@ -41,6 +43,14 @@ const AppMenu = () => {
   const [apps, setApps] = useState<Array<AppsType>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const handleClickAppMenu = () => {
+    trackEvent({
+      eventName: "Open App Menu",
+      eventData: { type: EVENT_TYPE_CTA },
+    });
+    onOpen();
+  };
+
   useEffect(() => {
     setLoading(true);
     fetch(`${PROJECT_LIST_URL}`)
@@ -58,7 +68,7 @@ const AppMenu = () => {
         aria-label="app-menu"
         icon={<BiMenu />}
         background="none"
-        onClick={onOpen}
+        onClick={handleClickAppMenu}
       />
       <Drawer
         placement={isBiggerThanMobile ? "right" : "top"}

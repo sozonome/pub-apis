@@ -1,6 +1,15 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/react";
 
+import { EVENT_TYPE_LINK } from "lib/constants/events";
+import { trackEvent } from "lib/utils/trackEvent";
+
 const Footer = () => {
+  const handleClickSite = () => {
+    trackEvent({
+      eventName: "Click sznm.dev",
+      eventData: { type: EVENT_TYPE_LINK },
+    });
+  };
   return (
     <Flex
       as="footer"
@@ -12,7 +21,12 @@ const Footer = () => {
       <Box textAlign="center">
         <Text fontSize={["sm", "md"]}>
           2020 -{" "}
-          <Link href="https://sznm.dev" fontWeight="bold" isExternal>
+          <Link
+            href="https://sznm.dev"
+            onClick={handleClickSite}
+            fontWeight="bold"
+            isExternal
+          >
             sznm.dev
           </Link>
         </Text>

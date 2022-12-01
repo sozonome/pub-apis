@@ -3,14 +3,18 @@ import Link from "next/link";
 import * as React from "react";
 
 import SearchContainer from "lib/components/search/SearchContainer";
+import { EVENT_TYPE_NAVIGATE } from "lib/constants/events";
 import { useCategoryList } from "lib/services/publicapis/category";
-import { trackEventToUmami } from "lib/utils/trackEvent";
+import { trackEvent } from "lib/utils/trackEvent";
 
 import type { HomePageProps } from "./types";
 
 const Home = ({ categoryFallbackData }: HomePageProps) => {
   const handleClickAll = () => {
-    trackEventToUmami("Home: click see complete list", "navigate");
+    trackEvent({
+      eventName: "Home: click see complete list",
+      eventData: { type: EVENT_TYPE_NAVIGATE },
+    });
   };
 
   const { data } = useCategoryList(categoryFallbackData);

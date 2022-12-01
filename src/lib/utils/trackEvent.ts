@@ -1,3 +1,10 @@
+type TrackEventArgs = {
+  eventName: string;
+  eventData: Record<string, unknown>;
+  url?: string;
+  websiteId?: string;
+};
+
 /**
  * umami tracker functions:
  * to tracks an event with a custom event type.
@@ -6,13 +13,18 @@
  * https://umami.is/docs/track-events
  * https://umami.is/docs/tracker-functions
  */
-export const trackEventToUmami = (
-  event_value: string,
-  event_type: string,
-  url?: string,
-  website_id?: string
-) => {
+export const trackEvent = ({
+  eventName,
+  eventData,
+  url,
+  websiteId,
+}: TrackEventArgs) => {
   if (window.umami && typeof window.umami.trackEvent === "function") {
-    window.umami.trackEvent(event_value, event_type, url, website_id);
+    window.umami.trackEvent(
+      eventName,
+      eventData as unknown as string,
+      url,
+      websiteId
+    );
   }
 };
