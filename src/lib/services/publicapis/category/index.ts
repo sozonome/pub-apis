@@ -8,7 +8,7 @@ import type { CategoryResponse } from "./types";
 const CATEGORY_RESOURCE_PATH = "/categories";
 
 export const getCategoryList = () =>
-  publicApiFetcher<CategoryResponse>(CATEGORY_RESOURCE_PATH);
+  publicApiFetcher<CategoryResponse>({ path: CATEGORY_RESOURCE_PATH });
 
 export const useCategoryList = (fallbackData?: CategoryResponse) =>
   usePublicApiSWR<CategoryResponse>(
