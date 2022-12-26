@@ -1983,11 +1983,6 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fontsource/jost@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/jost/-/jost-4.5.11.tgz#fdc8b45483ef031463f3df047719f6dfe910fea7"
-  integrity sha512-bQCyXe+YUYJVPLve++vopKh4HT6H9/kc8/nNzFI5aubwxhbSNDEJbR1Jk9DOjxyJNCiXA+FaTciIEZnkewqKMA==
-
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"

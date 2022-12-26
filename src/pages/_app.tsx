@@ -3,7 +3,6 @@ import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
-import "@fontsource/jost/latin.css";
 
 import defaultSEOConfig from "../../next-seo.config";
 import Layout from "lib/components/layout";

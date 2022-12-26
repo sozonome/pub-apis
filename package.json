@@ -22,7 +22,6 @@
     "@chakra-ui/react": "^2.4.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@fontsource/jost": "^4.5.11",
     "axios": "^1.2.1",
     "formik": "^2.2.9",
     "framer-motion": "^8.0.2",

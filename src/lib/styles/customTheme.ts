@@ -3,8 +3,8 @@ import { theme, extendTheme } from "@chakra-ui/react";
 const customTheme = extendTheme({
   fonts: {
     ...theme.fonts,
-    heading: "Jost, sans-serif",
-    body: "Jost, sans-serif",
+    heading: "Outfit, sans-serif",
+    body: "Outfit, sans-serif",
   },
   components: {
     Button: {
