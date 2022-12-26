@@ -84,16 +84,16 @@ const APIListPage = ({ fallbackData }: APIListPageProps) => {
 
   return (
     <Box>
-      <Link href="/" passHref>
-        <Button
-          width="full"
-          leftIcon={<AiOutlineArrowLeft />}
-          size="lg"
-          marginBottom={8}
-        >
-          back
-        </Button>
-      </Link>
+      <Button
+        as={Link}
+        href="/"
+        width="full"
+        leftIcon={<AiOutlineArrowLeft />}
+        size="lg"
+        marginBottom={8}
+      >
+        back
+      </Button>
       <Skeleton isLoaded={!isLoading} minHeight="80vh">
         <FormControl>
           <Input
