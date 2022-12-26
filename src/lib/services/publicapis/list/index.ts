@@ -9,7 +9,10 @@ const API_LIST_RESOURCE_PATH = (isRandom?: boolean) =>
   `/${isRandom ? "random" : "entries"}`;
 
 export const getApiList = (params?: APIListParams, isRandom?: boolean) =>
-  publicApiFetcher<APIListResponse>(API_LIST_RESOURCE_PATH(isRandom), params);
+  publicApiFetcher<APIListResponse>({
+    path: API_LIST_RESOURCE_PATH(isRandom),
+    params,
+  });
 
 export const useApiList = (
   params?: APIListParams,

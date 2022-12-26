@@ -29,8 +29,8 @@ const Home = ({ categoryFallbackData }: HomePageProps) => {
       <SearchContainer categories={categories} />
 
       <Box marginY={12}>
-        <Link href="/all" passHref>
-          <Button width="full" onClick={handleClickAll}>
+        <Link href="/all" passHref legacyBehavior>
+          <Button as={Link} href="/all" width="full" onClick={handleClickAll}>
             I want to see the complete list
           </Button>
         </Link>
