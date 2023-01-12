@@ -20,7 +20,8 @@ const Footer = () => {
     >
       <Box textAlign="center">
         <Text fontSize={["sm", "md"]}>
-          2020 -{" "}
+          2020 - {new Date().getFullYear()}
+          {" | "}
           <Link
             href="https://sznm.dev"
             onClick={handleClickSite}
