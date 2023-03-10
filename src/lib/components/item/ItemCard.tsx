@@ -90,7 +90,7 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
     <Grid
       padding={{ base: 4, md: 8 }}
       border="1px solid"
-      borderColor={colorMode === "light" ? "gray.200" : "gray.600"}
+      borderColor={colorMode === "light" ? "gray.200" : "gray.400"}
       borderRadius={24}
       gap={4}
     >
