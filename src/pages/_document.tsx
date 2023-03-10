@@ -3,7 +3,7 @@ import type { DocumentContext } from "next/document";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 import { UMAMI_SRC, UMAMI_WEBSITE_ID } from "lib/constants/umami";
-import customTheme from "lib/styles/customTheme";
+import customTheme from "lib/styles/theme";
 
 export const APP_NAME = "Public APIs";
 
