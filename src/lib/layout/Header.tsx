@@ -1,23 +1,18 @@
-import { Flex, Heading, Box, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Heading, Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 import AppMenu from "./AppMenu";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
-  const headingSize = useBreakpointValue<string>({
-    base: "md",
-    md: "2xl",
-  });
-
   return (
     <Flex as="header" width="full" height={24} align="center">
       <Box flexBasis="60%">
         <Link href="/">
-          <Heading as="h1" fontSize={headingSize}>
+          <Heading as="h1" fontSize={{ base: "md", md: "xl" }}>
             Public APIs
           </Heading>
-          <Text fontSize={["xs", "sm"]}>
+          <Text fontSize="xs" color="gray">
             Find some public APIs for your next projects
           </Text>
         </Link>

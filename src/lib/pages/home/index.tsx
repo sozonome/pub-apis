@@ -4,7 +4,6 @@ import * as React from "react";
 
 import SearchContainer from "lib/components/search/SearchContainer";
 import { EVENT_TYPE_NAVIGATE } from "lib/constants/events";
-import { useCategoryList } from "lib/services/publicapis/category";
 import { trackEvent } from "lib/utils/trackEvent";
 
 import type { HomePageProps } from "./types";
@@ -17,15 +16,13 @@ const Home = ({ categoryFallbackData }: HomePageProps) => {
     });
   };
 
-  const { data } = useCategoryList(categoryFallbackData);
-
   const categories = React.useMemo(
-    () => data?.categories ?? [],
-    [data?.categories]
+    () => categoryFallbackData?.categories ?? [],
+    [categoryFallbackData?.categories]
   );
 
   return (
-    <Box mb={8} marginX="auto" maxWidth={1000}>
+    <Box mb={8} marginX="auto" maxWidth={800}>
       <SearchContainer categories={categories} />
 
       <Box marginY={12}>

@@ -1,22 +1,16 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
-  Button,
   Flex,
   Grid,
   Heading,
+  IconButton,
   Link,
-  Stack,
+  Tag,
   Text,
   useColorMode,
   useToast,
 } from "@chakra-ui/react";
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
-import { FiExternalLink } from "react-icons/fi";
 import { ImCopy } from "react-icons/im";
 
 import type { APIEntry } from "lib/services/publicapis/list/types";
@@ -25,35 +19,27 @@ type APIDetailsProps = Omit<APIEntry, "API" | "Description" | "Link">;
 
 const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
   return (
-    <Stack>
-      <Text>Category: {Category}</Text>
-
-      <Box>
-        <Text>Support: </Text>
-        <Box marginLeft={4}>
-          <Flex alignItems="center">
-            <Text marginRight={2}>HTTPS :</Text>
-            {HTTPS ? (
-              <AiFillCheckCircle color="green" />
-            ) : (
-              <AiFillCloseCircle color="red" />
-            )}
-          </Flex>
-
-          <Text>CORS : {Cors}</Text>
-        </Box>
-        {Auth && <Text>Auth : {Auth}</Text>}
-      </Box>
-    </Stack>
+    <Flex alignItems="center" gap={2} wrap="wrap">
+      <Tag>{Category}</Tag>
+      <Tag alignItems="center">
+        <Text marginRight={2}>HTTPS :</Text>
+        {HTTPS ? (
+          <AiFillCheckCircle color="green" />
+        ) : (
+          <AiFillCloseCircle color="red" />
+        )}
+      </Tag>
+      <Tag>CORS : {Cors}</Tag>
+      {Auth && <Tag>Auth : {Auth}</Tag>}
+    </Flex>
   );
 };
 
 type ItemCardProps = {
   value: APIEntry;
-  useAccordion?: boolean;
 };
 
-const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
+const ItemCard = ({ value }: ItemCardProps) => {
   const { colorMode } = useColorMode();
 
   const {
@@ -75,7 +61,8 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
 
   const toast = useToast();
 
-  const handleCopy = () => {
+  const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
     navigator.clipboard.writeText(APILink);
     toast({
       description: `"${APILink}" copied to clipboard!`,
@@ -92,50 +79,37 @@ const ItemCard = ({ value, useAccordion = true }: ItemCardProps) => {
       border="1px solid"
       borderColor={colorMode === "light" ? "gray.200" : "gray.400"}
       borderRadius={24}
+      transition="ease-out 0.3s"
+      _hover={{
+        transform: "scale(1.02)",
+      }}
       gap={4}
+      role="group"
+      as={Link}
+      href={APILink}
+      style={{
+        textDecoration: "none",
+      }}
+      position="relative"
     >
       <Box>
         <Heading fontSize="lg">{APIName}</Heading>
-        <Text marginY={2} fontSize="lg">
+        <Text marginY={1} fontSize="sm" color="gray" fontWeight="light">
           {Description}
         </Text>
       </Box>
 
-      {useAccordion ? (
-        <Accordion allowToggle marginY={2}>
-          <AccordionItem>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                <Text fontSize="sm">Details</Text>
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel>
-              <APIDetails {...apiDetailsProps} />
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      ) : (
-        <APIDetails {...apiDetailsProps} />
-      )}
+      <APIDetails {...apiDetailsProps} />
 
-      <Box marginTop={4} alignSelf="flex-end">
-        <Text>API Link: </Text>
-        <Grid templateColumns={["repeat(2, 1fr)"]} gap={2}>
-          <Link href={APILink} isExternal>
-            <Button
-              width="full"
-              colorScheme="blue"
-              leftIcon={<FiExternalLink />}
-            >
-              Open
-            </Button>
-          </Link>
-          <Button onClick={handleCopy} rightIcon={<ImCopy />}>
-            Copy
-          </Button>
-        </Grid>
-      </Box>
+      <IconButton
+        position="absolute"
+        top={{ base: 4, md: 6 }}
+        right={{ base: 4, md: 6 }}
+        aria-label="copy button"
+        onClick={handleCopy}
+        icon={<ImCopy />}
+        size="md"
+      />
     </Grid>
   );
 };

@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Input, Skeleton } from "@chakra-ui/react";
+import { Box, Button, FormControl, Input } from "@chakra-ui/react";
 import chunk from "lodash/chunk";
 import debounce from "lodash/debounce";
 import Link from "next/link";
@@ -9,15 +9,12 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import ItemContainer from "lib/components/item/ItemContainer";
 import type { PageNavigationButtonsProps } from "lib/components/list/PageNavigationButtons";
 import PageNavigationButtons from "lib/components/list/PageNavigationButtons";
-import { useApiList } from "lib/services/publicapis/list";
 
 import type { APIListPageProps } from "./types";
 
 const ITEM_PER_PAGE = 24;
 
-const APIListPage = ({ fallbackData }: APIListPageProps) => {
-  const { data, isLoading } = useApiList(undefined, undefined, fallbackData);
-
+const APIListPage = ({ fallbackData: data }: APIListPageProps) => {
   const sortedData = useMemo(() => {
     if (!data?.entries) {
       return [];
@@ -94,24 +91,19 @@ const APIListPage = ({ fallbackData }: APIListPageProps) => {
       >
         back
       </Button>
-      <Skeleton isLoaded={!isLoading} minHeight="80vh">
-        <FormControl>
-          <Input
-            type="text"
-            placeholder="quick search"
-            size="lg"
-            onChange={handleChangeKeyword}
-          />
-        </FormControl>
-        <PageNavigationButtons {...pageNavigationButtonsProps} />
-        {paginatedData[currentPage]?.length ? (
-          <ItemContainer
-            entries={paginatedData[currentPage]}
-            useAccordion={false}
-          />
-        ) : null}
-        <PageNavigationButtons {...pageNavigationButtonsProps} />
-      </Skeleton>
+      <FormControl>
+        <Input
+          type="text"
+          placeholder="quick search"
+          size="lg"
+          onChange={handleChangeKeyword}
+        />
+      </FormControl>
+      <PageNavigationButtons {...pageNavigationButtonsProps} />
+      {paginatedData[currentPage]?.length ? (
+        <ItemContainer entries={paginatedData[currentPage]} />
+      ) : null}
+      <PageNavigationButtons {...pageNavigationButtonsProps} />
     </Box>
   );
 };

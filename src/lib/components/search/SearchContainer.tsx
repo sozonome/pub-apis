@@ -132,7 +132,6 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
           <FormControl>
             <Input
               type="text"
-              textAlign="center"
               name="queryParams.title"
               value={title}
               onChange={handleChange}
@@ -259,26 +258,19 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
         </Stack>
       </Box>
 
-      <Stack>
+      <Grid templateColumns="2fr 1fr" gap={4}>
         <Button
           disabled={searchButtonDisabled}
-          colorScheme="teal"
           width="full"
           onClick={() => handleSubmit()}
           isLoading={isLoadingSearchResult}
         >
           Search
         </Button>
-        <Button
-          disabled={!dirty}
-          size="sm"
-          colorScheme="orange"
-          width="full"
-          onClick={() => resetForm()}
-        >
-          Reset Search Input
+        <Button disabled={!dirty} width="full" onClick={() => resetForm()}>
+          Reset
         </Button>
-      </Stack>
+      </Grid>
 
       {shouldFetch && (
         <Skeleton isLoaded={!isLoadingSearchResult} minHeight={72} marginY={4}>

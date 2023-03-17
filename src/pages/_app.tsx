@@ -5,7 +5,7 @@ import { DefaultSeo } from "next-seo";
 import NextNProgress from "nextjs-progressbar";
 
 import defaultSEOConfig from "../../next-seo.config";
-import Layout from "lib/components/layout";
+import Layout from "lib/layout";
 import customTheme from "lib/styles/theme";
 import "lib/styles/globals.css";
 
