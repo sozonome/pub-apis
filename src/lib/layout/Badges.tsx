@@ -1,4 +1,4 @@
-import { Grid, Link, Image, useColorMode } from "@chakra-ui/react";
+import { Grid, Link, Image, useColorMode } from '@chakra-ui/react';
 
 const Badges = () => {
   const { colorMode } = useColorMode();
@@ -6,7 +6,7 @@ const Badges = () => {
   return (
     <Grid
       width="full"
-      templateColumns={["repeat(2, 1fr)", "1fr"]}
+      templateColumns={['repeat(2, 1fr)', '1fr']}
       gap={2}
       marginY={4}
     >

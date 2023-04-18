@@ -3,7 +3,7 @@ export type APIListParams = {
   description?: string;
   auth?: string;
   https?: boolean;
-  cors?: "yes" | "no" | "unknown";
+  cors?: 'yes' | 'no' | 'unknown';
   category?: string;
 };
 

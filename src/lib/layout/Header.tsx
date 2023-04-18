@@ -1,15 +1,15 @@
-import { Flex, Heading, Box, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Flex, Heading, Box, Text } from '@chakra-ui/react';
+import Link from 'next/link';
 
-import AppMenu from "./AppMenu";
-import ThemeToggle from "./ThemeToggle";
+import AppMenu from './AppMenu';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   return (
     <Flex as="header" width="full" height={24} align="center">
       <Box flexBasis="60%">
         <Link href="/">
-          <Heading as="h1" fontSize={{ base: "md", md: "xl" }}>
+          <Heading as="h1" fontSize={{ base: 'md', md: 'xl' }}>
             Public APIs
           </Heading>
           <Text fontSize="xs" color="gray">

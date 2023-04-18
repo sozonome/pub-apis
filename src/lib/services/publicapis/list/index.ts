@@ -1,12 +1,12 @@
 import {
   usePublicApiSWR,
   publicApiFetcher,
-} from "lib/services/publicapis/utils";
+} from 'lib/services/publicapis/utils';
 
-import type { APIListParams, APIListResponse } from "./types";
+import type { APIListParams, APIListResponse } from './types';
 
 const API_LIST_RESOURCE_PATH = (isRandom?: boolean) =>
-  `/${isRandom ? "random" : "entries"}`;
+  `/${isRandom ? 'random' : 'entries'}`;
 
 export const getApiList = (params?: APIListParams, isRandom?: boolean) =>
   publicApiFetcher<APIListResponse>({

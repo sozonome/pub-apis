@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useSWR from "swr";
+import useSWR from 'swr';
 
-import type { SWRHookResponse } from "lib/types/SWRHook";
-import { fetcher } from "lib/utils/fetcher";
+import type { SWRHookResponse } from 'lib/types/SWRHook';
+import { fetcher } from 'lib/utils/fetcher';
 
-import { API_URL } from "./constants";
+import { API_URL } from './constants';
 
 type PublicApiFetcherParams = {
   path: string;

@@ -1,4 +1,4 @@
-import type { FormikErrors } from "formik";
+import type { FormikErrors } from 'formik';
 
 export const formikSubmitButtonDisabled = <
   FormDataType = unknown,

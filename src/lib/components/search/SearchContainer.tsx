@@ -18,18 +18,18 @@ import {
   Stack,
   Text,
   useToast,
-} from "@chakra-ui/react";
-import type { FormikErrors } from "formik";
-import { useFormik } from "formik";
-import type { ChangeEvent, ReactText } from "react";
-import { useState } from "react";
+} from '@chakra-ui/react';
+import type { FormikErrors } from 'formik';
+import { useFormik } from 'formik';
+import type { ChangeEvent, ReactText } from 'react';
+import { useState } from 'react';
 
-import ItemContainer from "lib/components/item/ItemContainer";
-import { useApiList } from "lib/services/publicapis/list";
-import type { APIListParams } from "lib/services/publicapis/list/types";
-import { formikSubmitButtonDisabled } from "lib/utils/formikSubmitButtonDisabled";
+import ItemContainer from 'lib/components/item/ItemContainer';
+import { useApiList } from 'lib/services/publicapis/list';
+import type { APIListParams } from 'lib/services/publicapis/list/types';
+import { formikSubmitButtonDisabled } from 'lib/utils/formikSubmitButtonDisabled';
 
-import type { SearchContainerProps } from "./types";
+import type { SearchContainerProps } from './types';
 
 type SearchFormValueType = {
   queryParams: APIListParams;
@@ -41,7 +41,7 @@ type SearchFormValueType = {
 
 const INITIAL_VALUES: SearchFormValueType = {
   queryParams: {
-    title: "",
+    title: '',
   },
   searchDescription: false,
   selectCategory: false,
@@ -85,17 +85,17 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
 
       if (formValues.queryParams.https !== undefined && emptyQueries) {
         formErrors.queryParams = { ...formErrors.queryParams };
-        formErrors.queryParams.title = "Title must not be empty";
+        formErrors.queryParams.title = 'Title must not be empty';
       }
 
       if (formValues.selectCategory && !formValues.queryParams.category) {
         formErrors.queryParams = { ...formErrors.queryParams };
-        formErrors.queryParams.category = "Category must be selected";
+        formErrors.queryParams.category = 'Category must be selected';
       }
 
       if (formValues.searchDescription && !formValues.queryParams.description) {
         formErrors.queryParams = { ...formErrors.queryParams };
-        formErrors.queryParams.description = "Description must be selected";
+        formErrors.queryParams.description = 'Description must be selected';
       }
 
       return formErrors;
@@ -113,11 +113,11 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
   if (shouldFetch && isError) {
     toast.closeAll();
     toast({
-      position: "top",
-      title: "Error",
+      position: 'top',
+      title: 'Error',
       description:
-        "Error fetching data. Check your internet connection and try to refresh the page.",
-      status: "error",
+        'Error fetching data. Check your internet connection and try to refresh the page.',
+      status: 'error',
       isClosable: true,
       duration: 10000,
     });
@@ -153,7 +153,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
               <AccordionPanel>
                 <Stack spacing={2}>
                   <Grid
-                    templateColumns={{ sm: "1fr", md: "repeat(2,1fr)" }}
+                    templateColumns={{ sm: '1fr', md: 'repeat(2,1fr)' }}
                     gap={{ sm: 0, md: 4 }}
                   >
                     <Box>
@@ -163,7 +163,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                           name="searchDescription"
                           onChange={(e: ChangeEvent<HTMLInputElement>) => {
                             setFieldValue(
-                              "searchDescription",
+                              'searchDescription',
                               e.target.checked
                             );
                           }}
@@ -193,7 +193,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                           isChecked={selectCategory}
                           name="selectCategory"
                           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                            setFieldValue("selectCategory", e.target.checked);
+                            setFieldValue('selectCategory', e.target.checked);
                           }}
                         >
                           Select Category
@@ -227,8 +227,8 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                       name="queryParams.https"
                       onChange={(e: ReactText) => {
                         setFieldValue(
-                          "queryParams.https",
-                          e === "undefined"
+                          'queryParams.https',
+                          e === 'undefined'
                             ? undefined
                             : JSON.parse(e.toString())
                         );

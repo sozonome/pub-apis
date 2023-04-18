@@ -1,7 +1,7 @@
-const withPWA = require("next-pwa")({
-  disable: process.env.NODE_ENV === "development",
+const withPWA = require('next-pwa')({
+  disable: process.env.NODE_ENV === 'development',
   // to re-generate manifest.json, visit https://tomitm.github.io/appmanifest/
-  dest: "public",
+  dest: 'public',
   register: true,
 });
 
@@ -9,6 +9,6 @@ const withPWA = require("next-pwa")({
 module.exports = withPWA({
   reactStrictMode: true,
   eslint: {
-    dirs: ["src"],
+    dirs: ['src'],
   },
 });

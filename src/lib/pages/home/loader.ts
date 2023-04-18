@@ -1,8 +1,8 @@
-import type { GetStaticProps } from "next";
+import type { GetStaticProps } from 'next';
 
-import { getCategoryList } from "lib/services/publicapis/category";
+import { getCategoryList } from 'lib/services/publicapis/category';
 
-import type { HomePageProps } from "./types";
+import type { HomePageProps } from './types';
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   try {

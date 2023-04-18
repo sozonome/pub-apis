@@ -1,16 +1,16 @@
-import { Box, Button, FormControl, Input } from "@chakra-ui/react";
-import chunk from "lodash/chunk";
-import debounce from "lodash/debounce";
-import Link from "next/link";
-import type { ChangeEvent } from "react";
-import { useCallback, useMemo, useState } from "react";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Box, Button, FormControl, Input } from '@chakra-ui/react';
+import chunk from 'lodash/chunk';
+import debounce from 'lodash/debounce';
+import Link from 'next/link';
+import type { ChangeEvent } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-import ItemContainer from "lib/components/item/ItemContainer";
-import type { PageNavigationButtonsProps } from "lib/components/list/PageNavigationButtons";
-import PageNavigationButtons from "lib/components/list/PageNavigationButtons";
+import ItemContainer from 'lib/components/item/ItemContainer';
+import type { PageNavigationButtonsProps } from 'lib/components/list/PageNavigationButtons';
+import PageNavigationButtons from 'lib/components/list/PageNavigationButtons';
 
-import type { APIListPageProps } from "./types";
+import type { APIListPageProps } from './types';
 
 const ITEM_PER_PAGE = 24;
 
@@ -32,7 +32,7 @@ const APIListPage = ({ fallbackData: data }: APIListPageProps) => {
   }, [data]);
 
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [keyword, setKeyword] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>('');
 
   const paginatedData = useMemo(() => {
     const filteredData = sortedData.filter((entry) => {
@@ -50,9 +50,9 @@ const APIListPage = ({ fallbackData: data }: APIListPageProps) => {
   }, [keyword, sortedData]);
 
   const handleChangePage = useCallback(
-    (type: "next" | "prev") => () => {
+    (type: 'next' | 'prev') => () => {
       const updatePageNumber =
-        type === "next" ? currentPage + 1 : currentPage - 1;
+        type === 'next' ? currentPage + 1 : currentPage - 1;
       setCurrentPage(updatePageNumber);
       window.scrollTo(0, 0);
     },

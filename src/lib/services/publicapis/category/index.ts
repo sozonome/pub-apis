@@ -1,11 +1,11 @@
 import {
   publicApiFetcher,
   usePublicApiSWR,
-} from "lib/services/publicapis/utils";
+} from 'lib/services/publicapis/utils';
 
-import type { CategoryResponse } from "./types";
+import type { CategoryResponse } from './types';
 
-const CATEGORY_RESOURCE_PATH = "/categories";
+const CATEGORY_RESOURCE_PATH = '/categories';
 
 export const getCategoryList = () =>
   publicApiFetcher<CategoryResponse>({ path: CATEGORY_RESOURCE_PATH });

@@ -1,9 +1,9 @@
-import { Grid, Button } from "@chakra-ui/react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { Grid, Button } from '@chakra-ui/react';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 export type PageNavigationButtonsProps = {
   currentPage: number;
-  handleChangePage: (type: "next" | "prev") => () => void;
+  handleChangePage: (type: 'next' | 'prev') => () => void;
   lastPage: number;
 };
 
@@ -23,7 +23,7 @@ const PageNavigationButtons = ({
         disabled={currentPage === 0}
         leftIcon={<AiOutlineArrowLeft />}
         colorScheme="cyan"
-        onClick={handleChangePage("prev")}
+        onClick={handleChangePage('prev')}
       >
         Prev
       </Button>
@@ -31,7 +31,7 @@ const PageNavigationButtons = ({
         disabled={currentPage === lastPage}
         rightIcon={<AiOutlineArrowRight />}
         colorScheme="yellow"
-        onClick={handleChangePage("next")}
+        onClick={handleChangePage('next')}
       >
         Next
       </Button>

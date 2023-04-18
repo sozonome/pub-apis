@@ -9,13 +9,13 @@ import {
   Text,
   useColorMode,
   useToast,
-} from "@chakra-ui/react";
-import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
-import { ImCopy } from "react-icons/im";
+} from '@chakra-ui/react';
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
+import { ImCopy } from 'react-icons/im';
 
-import type { APIEntry } from "lib/services/publicapis/list/types";
+import type { APIEntry } from 'lib/services/publicapis/list/types';
 
-type APIDetailsProps = Omit<APIEntry, "API" | "Description" | "Link">;
+type APIDetailsProps = Omit<APIEntry, 'API' | 'Description' | 'Link'>;
 
 const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
   return (
@@ -66,10 +66,10 @@ const ItemCard = ({ value }: ItemCardProps) => {
     navigator.clipboard.writeText(APILink);
     toast({
       description: `"${APILink}" copied to clipboard!`,
-      status: "success",
+      status: 'success',
       isClosable: true,
       duration: 9000,
-      position: "top-right",
+      position: 'top-right',
     });
   };
 
@@ -77,18 +77,18 @@ const ItemCard = ({ value }: ItemCardProps) => {
     <Grid
       padding={{ base: 4, md: 8 }}
       border="1px solid"
-      borderColor={colorMode === "light" ? "gray.200" : "gray.400"}
+      borderColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
       borderRadius={24}
       transition="ease-out 0.3s"
       _hover={{
-        transform: "scale(1.02)",
+        transform: 'scale(1.02)',
       }}
       gap={4}
       role="group"
       as={Link}
       href={APILink}
       style={{
-        textDecoration: "none",
+        textDecoration: 'none',
       }}
       position="relative"
     >

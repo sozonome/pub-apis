@@ -1,8 +1,8 @@
-import type { GetStaticProps } from "next";
+import type { GetStaticProps } from 'next';
 
-import { getApiList } from "lib/services/publicapis/list";
+import { getApiList } from 'lib/services/publicapis/list';
 
-import type { APIListPageProps } from "./types";
+import type { APIListPageProps } from './types';
 
 export const getStaticProps: GetStaticProps<APIListPageProps> = async () => {
   const fallbackData = await getApiList();
