@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/sozonome/pub-apis/compare/v1.1.3...v1.2.0) (2023-04-18)
+
+
+### Features
+
+* **theme:** update theme color ([#75](https://github.com/sozonome/pub-apis/issues/75)) ([3fc860e](https://github.com/sozonome/pub-apis/commit/3fc860e8c3a6d719139471e1d67a4b90d0752e4f))
+
 ### [1.1.3](https://github.com/sozonome/pub-apis/compare/v1.1.2...v1.1.3) (2022-12-01)
 
 ### [1.1.2](https://github.com/sozonome/pub-apis/compare/v1.1.1...v1.1.2) (2022-06-22)
