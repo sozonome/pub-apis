@@ -60,9 +60,6 @@ devDependencies:
   '@types/react':
     specifier: ^18.0.37
     version: 18.0.37
-  '@types/umami':
-    specifier: ^0.1.1
-    version: 0.1.1
   commitlint:
     specifier: ^17.6.1
     version: 17.6.1
@@ -3014,10 +3011,6 @@ packages:
   /@types/trusted-types@2.0.3:
     resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==}
     dev: false
-
-  /@types/umami@0.1.1:
-    resolution: {integrity: sha512-00BsPEKZ8ASEyJDFJ1WwnXSdYkJYgQ4fltX9TP/UHX3o3KdUfPocc0jy5wHR3tBXV4LdJldjkZUjmGe/T4zspQ==}
-    dev: true
 
   /@typescript-eslint/eslint-plugin@5.59.0(@typescript-eslint/parser@5.59.0)(eslint@8.38.0)(typescript@4.9.5):
     resolution: {integrity: sha512-p0QgrEyrxAWBecR56gyn3wkG15TJdI//eetInP3zYRewDh0XS+DhB3VUAd3QqvziFsfaQIoIuZMxZRB7vXYaYw==}
