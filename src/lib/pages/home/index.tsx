@@ -1,14 +1,14 @@
+'use client';
+
 import { Box, Button } from '@chakra-ui/react';
 import Link from 'next/link';
-import * as React from 'react';
 
 import SearchContainer from 'lib/components/search/SearchContainer';
 import { EVENT_TYPE_NAVIGATE } from 'lib/constants/events';
+import type { HomePageProps } from 'lib/pages/home/types';
 import { trackEvent } from 'lib/utils/trackEvent';
 
-import type { HomePageProps } from './types';
-
-const Home = ({ categoryFallbackData }: HomePageProps) => {
+const Home = ({ categoryData }: HomePageProps) => {
   const handleClickAll = () => {
     trackEvent({
       eventName: 'Home: click see complete list',
@@ -16,10 +16,7 @@ const Home = ({ categoryFallbackData }: HomePageProps) => {
     });
   };
 
-  const categories = React.useMemo(
-    () => categoryFallbackData?.categories ?? [],
-    [categoryFallbackData?.categories]
-  );
+  const categories = categoryData?.categories ?? [];
 
   return (
     <Box mb={8} marginX="auto" maxWidth={800}>
