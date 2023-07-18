@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   referrer: 'origin-when-cross-origin',
   colorScheme: 'dark light',
   icons: {
-    icon: '/avataaars.svg',
+    icon: 'https://sznm.dev/app_icons/pub-apis.svg',
   },
   appleWebApp: {
     title: 'pub-apis',
