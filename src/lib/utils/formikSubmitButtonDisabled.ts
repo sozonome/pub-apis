@@ -2,7 +2,7 @@ import type { FormikErrors } from 'formik';
 
 export const formikSubmitButtonDisabled = <
   FormDataType = unknown,
-  CheckDataShape = unknown
+  CheckDataShape = unknown,
 >(
   dirty: boolean,
   errors: FormikErrors<FormDataType>,
