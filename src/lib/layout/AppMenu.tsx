@@ -24,9 +24,10 @@ import { BiMenu } from 'react-icons/bi';
 
 import { EVENT_TYPE_CTA } from 'lib/constants/events';
 import { trackEvent } from 'lib/utils/trackEvent';
-import { APP_NAME } from 'pages/_document';
 
 import Badges from './Badges';
+
+const APP_NAME = 'Public APIs';
 
 type AppsType = {
   name: string;
