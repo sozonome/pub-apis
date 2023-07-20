@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Button, FormControl, Input } from '@chakra-ui/react';
 import chunk from 'lodash/chunk';
 import debounce from 'lodash/debounce';
@@ -14,7 +16,7 @@ import type { APIListPageProps } from './types';
 
 const ITEM_PER_PAGE = 24;
 
-const APIListPage = ({ fallbackData: data }: APIListPageProps) => {
+const APIListPage = ({ data }: APIListPageProps) => {
   const sortedData = useMemo(() => {
     if (!data?.entries) {
       return [];
