@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 
 import type { SWRHookResponse } from 'lib/types/SWRHook';
 import { fetcher } from 'lib/utils/fetcher';
@@ -35,5 +36,29 @@ export const usePublicApiSWR = <ResType>(
     isLoading,
     isError: error,
     mutate,
+  };
+};
+
+type UsePublicAPISWRMutate = {
+  path: string;
+};
+
+export const usePublicAPISWRMutate = <ResType, Params>({
+  path,
+}: UsePublicAPISWRMutate) => {
+  const { data, trigger, isMutating, reset } = useSWRMutation<
+    ResType,
+    unknown,
+    string,
+    Params
+  >(path, (pathname, { arg }) =>
+    publicApiFetcher({ path: pathname, params: arg })
+  );
+
+  return {
+    data,
+    trigger,
+    isMutating,
+    reset,
   };
 };

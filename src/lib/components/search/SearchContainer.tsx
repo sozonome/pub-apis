@@ -1,289 +1,190 @@
 'use client';
 
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
   Button,
   Checkbox,
   FormControl,
-  FormLabel,
   Grid,
+  HStack,
+  IconButton,
   Input,
-  Radio,
-  RadioGroup,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   Select,
   Skeleton,
   Stack,
+  Tag,
   Text,
   useToast,
 } from '@chakra-ui/react';
-import type { FormikErrors } from 'formik';
-import { useFormik } from 'formik';
-import type { ChangeEvent, ReactText } from 'react';
-import { useState } from 'react';
+import pickBy from 'lodash/pickBy';
+import { useForm } from 'react-hook-form';
+import { FaFilter } from 'react-icons/fa';
 
 import ItemContainer from 'lib/components/item/ItemContainer';
-import { useApiList } from 'lib/services/publicapis/list';
-import type { APIListParams } from 'lib/services/publicapis/list/types';
-import { formikSubmitButtonDisabled } from 'lib/utils/formikSubmitButtonDisabled';
+import { INITIAL_VALUES } from 'lib/components/search/constants';
+import type { SearchForm } from 'lib/models/searchForm';
+import { useApiList } from 'lib/services/publicapis/list/hooks';
 
 import type { SearchContainerProps } from './types';
 
-type SearchFormValueType = {
-  queryParams: APIListParams;
-
-  searchDescription: boolean;
-  selectCategory: boolean;
-  isRandom: boolean;
-};
-
-const INITIAL_VALUES: SearchFormValueType = {
-  queryParams: {
-    title: '',
-  },
-  searchDescription: false,
-  selectCategory: false,
-  isRandom: false,
-};
-
 const SearchContainer = ({ categories }: SearchContainerProps) => {
-  const [searchQueries, setSearchQueries] = useState<APIListParams>();
-  const [isRandomSearch, setIsRandomSearch] = useState<boolean>(false);
-  const [shouldFetch, setShouldFetch] = useState<boolean>(false);
+  const toast = useToast();
 
   const {
     data: searchResult,
-    isLoading: isLoadingSearchResult,
-    isError,
-  } = useApiList(searchQueries, isRandomSearch, undefined, shouldFetch);
+    isMutating: isLoadingSearchResult,
+    trigger: searchAPI,
+    reset: resetList,
+  } = useApiList();
 
   const {
-    values: {
-      queryParams: { title, description, https, category },
-      searchDescription,
-      selectCategory,
-      isRandom,
-    },
-    errors,
-    dirty,
-    handleChange,
-    setFieldValue,
+    register,
     handleSubmit,
-    resetForm,
-  } = useFormik<SearchFormValueType>({
-    initialValues: INITIAL_VALUES,
-    validate: (formValues: SearchFormValueType) => {
-      const formErrors: FormikErrors<SearchFormValueType> = {};
-
-      const emptyQueries = [
-        formValues.queryParams.title,
-        formValues.queryParams.category,
-        formValues.queryParams.description,
-      ].every((query) => !query);
-
-      if (formValues.queryParams.https !== undefined && emptyQueries) {
-        formErrors.queryParams = { ...formErrors.queryParams };
-        formErrors.queryParams.title = 'Title must not be empty';
-      }
-
-      if (formValues.selectCategory && !formValues.queryParams.category) {
-        formErrors.queryParams = { ...formErrors.queryParams };
-        formErrors.queryParams.category = 'Category must be selected';
-      }
-
-      if (formValues.searchDescription && !formValues.queryParams.description) {
-        formErrors.queryParams = { ...formErrors.queryParams };
-        formErrors.queryParams.description = 'Description must be selected';
-      }
-
-      return formErrors;
-    },
-    onSubmit: (formValues: SearchFormValueType) => {
-      setShouldFetch(false);
-      setSearchQueries(formValues.queryParams);
-      setIsRandomSearch(formValues.isRandom);
-      setShouldFetch(true);
-    },
+    reset,
+    watch,
+    formState: { isValid, isDirty },
+  } = useForm<SearchForm>({
+    defaultValues: INITIAL_VALUES,
+    mode: 'onChange',
   });
 
-  const toast = useToast();
+  const title = watch('queryParams.title');
+  const searchButtonDisabled = !isDirty || !isValid || !title;
 
-  if (shouldFetch && isError) {
-    toast.closeAll();
-    toast({
-      position: 'top',
-      title: 'Error',
-      description:
-        'Error fetching data. Check your internet connection and try to refresh the page.',
-      status: 'error',
-      isClosable: true,
-      duration: 10000,
+  const [description, category, https] = watch([
+    'queryParams.description',
+    'queryParams.category',
+    'queryParams.https',
+  ]);
+
+  const processSearch = async (values: SearchForm) => {
+    const queries = pickBy(values.queryParams);
+    await searchAPI(queries).catch(() => {
+      toast.closeAll();
+      toast({
+        position: 'top',
+        title: 'Error',
+        description:
+          'Error fetching data. Check your internet connection and try to refresh the page.',
+        status: 'error',
+        isClosable: true,
+        duration: 10000,
+      });
     });
-  }
+  };
 
-  const searchButtonDisabled = formikSubmitButtonDisabled(dirty, errors);
+  const handleReset = () => {
+    reset(INITIAL_VALUES);
+    resetList();
+  };
+  const handleSearch = handleSubmit(processSearch);
 
   return (
-    <Box>
-      <Box marginBottom={4}>
-        <Stack>
+    <>
+      <Stack marginBottom={4}>
+        <Stack direction="row" gap={2}>
           <FormControl>
             <Input
+              {...register('queryParams.title')}
               type="text"
-              name="queryParams.title"
-              value={title}
-              onChange={handleChange}
               placeholder="search API name"
               fontWeight="semibold"
               size="lg"
             />
           </FormControl>
 
-          <Accordion allowToggle>
-            <AccordionItem>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  <Text>Options</Text>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-
-              <AccordionPanel>
+          <Popover>
+            <PopoverTrigger>
+              <IconButton
+                size="lg"
+                aria-label="filter search"
+                icon={<FaFilter />}
+              />
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>Filter</PopoverHeader>
+              <PopoverBody>
                 <Stack spacing={2}>
-                  <Grid
-                    templateColumns={{ sm: '1fr', md: 'repeat(2,1fr)' }}
-                    gap={{ sm: 0, md: 4 }}
-                  >
-                    <Box>
-                      <FormControl textAlign="center">
-                        <Checkbox
-                          isChecked={searchDescription}
-                          name="searchDescription"
-                          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                            setFieldValue(
-                              'searchDescription',
-                              e.target.checked
-                            );
-                          }}
-                        >
-                          Search Description
-                        </Checkbox>
-                      </FormControl>
-                      {searchDescription && (
-                        <FormControl>
-                          <Input
-                            type="text"
-                            borderRadius={12}
-                            textAlign="center"
-                            name="queryParams.description"
-                            value={description}
-                            onChange={handleChange}
-                            placeholder="search API description"
-                            size="md"
-                          />
-                        </FormControl>
-                      )}
-                    </Box>
+                  <Box>
+                    <FormControl>
+                      <Input
+                        {...register('queryParams.description')}
+                        type="text"
+                        borderRadius={12}
+                        placeholder="search API description"
+                        size="md"
+                      />
+                    </FormControl>
+                  </Box>
 
-                    <Box>
-                      <FormControl textAlign="center">
-                        <Checkbox
-                          isChecked={selectCategory}
-                          name="selectCategory"
-                          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                            setFieldValue('selectCategory', e.target.checked);
-                          }}
-                        >
-                          Select Category
-                        </Checkbox>
-                      </FormControl>
-                      {selectCategory && (
-                        <FormControl>
-                          <Select
-                            placeholder="Select Category ..."
-                            name="queryParams.category"
-                            value={category}
-                            onChange={handleChange}
-                          >
-                            {categories?.map((categoryItem: string) => (
-                              <Text as="option" key={categoryItem}>
-                                {categoryItem}
-                              </Text>
-                            ))}
-                          </Select>
-                        </FormControl>
-                      )}
-                    </Box>
-                  </Grid>
+                  <Box>
+                    <FormControl>
+                      <Select
+                        {...register('queryParams.category')}
+                        placeholder="Select Category ..."
+                      >
+                        {categories?.map((categoryItem: string) => (
+                          <Text as="option" key={categoryItem}>
+                            {categoryItem}
+                          </Text>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Box>
 
                   <FormControl alignItems="center">
-                    <FormLabel textAlign="center" margin={0}>
-                      Support HTTPS
-                    </FormLabel>
-                    <RadioGroup
-                      value={String(https)}
-                      name="queryParams.https"
-                      onChange={(e: ReactText) => {
-                        setFieldValue(
-                          'queryParams.https',
-                          e === 'undefined'
-                            ? undefined
-                            : JSON.parse(e.toString())
-                        );
-                      }}
-                    >
-                      <Stack direction="row" justify="center">
-                        <Radio value={String(true)}>Yes</Radio>
-                        <Radio value={String(false)}>No</Radio>
-                        <Radio value={String(undefined)}>Both</Radio>
-                      </Stack>
-                    </RadioGroup>
-                  </FormControl>
-
-                  <FormControl textAlign="center">
-                    <Checkbox
-                      isChecked={isRandom}
-                      name="isRandom"
-                      onChange={handleChange}
-                    >
-                      Surprise Me
+                    <Checkbox {...register('queryParams.https')}>
+                      Support HTTPs
                     </Checkbox>
                   </FormControl>
                 </Stack>
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </Stack>
-      </Box>
+
+        <HStack gap={2} height={8}>
+          {description ? <Tag>{description}</Tag> : null}
+          {category ? <Tag colorScheme="cyan">{category}</Tag> : null}
+          {https ? <Tag colorScheme="teal">HTTPs</Tag> : null}
+        </HStack>
+      </Stack>
 
       <Grid templateColumns="2fr 1fr" gap={4}>
         <Button
-          disabled={searchButtonDisabled}
+          isDisabled={searchButtonDisabled}
           width="full"
-          onClick={() => handleSubmit()}
+          onClick={handleSearch}
           isLoading={isLoadingSearchResult}
         >
           Search
         </Button>
-        <Button disabled={!dirty} width="full" onClick={() => resetForm()}>
+        <Button isDisabled={!isDirty} width="full" onClick={handleReset}>
           Reset
         </Button>
       </Grid>
 
-      {shouldFetch && (
-        <Skeleton isLoaded={!isLoadingSearchResult} minHeight={72} marginY={4}>
-          {searchResult && searchResult.entries ? (
-            <ItemContainer entries={searchResult.entries} />
-          ) : (
-            <Text textAlign="center">Not Found</Text>
-          )}
-        </Skeleton>
-      )}
-    </Box>
+      <Skeleton isLoaded={!isLoadingSearchResult} marginY={4}>
+        {searchResult?.entries ? (
+          <ItemContainer
+            entries={searchResult.entries}
+            templateColumns="repeat(1)"
+          />
+        ) : null}
+        {searchResult?.entries?.length === 0 ? (
+          <Text textAlign="center">Not Found</Text>
+        ) : null}
+      </Skeleton>
+    </>
   );
 };
 
