@@ -16,8 +16,8 @@ const PageNavigationButtons = ({
     <Grid
       hidden={lastPage <= 0}
       templateColumns="repeat(2, 1fr)"
-      marginY={8}
-      gap={8}
+      marginY={4}
+      gap={4}
     >
       <Button
         disabled={currentPage === 0}

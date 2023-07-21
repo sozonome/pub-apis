@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, FormControl, Input } from '@chakra-ui/react';
+import { Box, Button, FormControl, Input, Stack } from '@chakra-ui/react';
 import chunk from 'lodash/chunk';
 import debounce from 'lodash/debounce';
 import Link from 'next/link';
@@ -86,26 +86,32 @@ const APIListPage = ({ data }: APIListPageProps) => {
       <Button
         as={Link}
         href="/"
-        width="full"
         leftIcon={<AiOutlineArrowLeft />}
-        size="lg"
         marginBottom={8}
       >
         back
       </Button>
-      <FormControl>
-        <Input
-          type="text"
-          placeholder="quick search"
-          size="lg"
-          onChange={handleChangeKeyword}
-        />
-      </FormControl>
-      <PageNavigationButtons {...pageNavigationButtonsProps} />
+      <Stack
+        alignItems={{ md: 'center' }}
+        direction={{ base: 'column', md: 'row' }}
+        gap={2}
+      >
+        <FormControl>
+          <Input
+            type="text"
+            placeholder="quick search"
+            size="lg"
+            onChange={handleChangeKeyword}
+          />
+        </FormControl>
+        <PageNavigationButtons {...pageNavigationButtonsProps} />
+      </Stack>
       {paginatedData[currentPage]?.length ? (
         <ItemContainer entries={paginatedData[currentPage]} />
       ) : null}
-      <PageNavigationButtons {...pageNavigationButtonsProps} />
+      <Stack alignItems={{ md: 'end' }} justifyContent={{ md: 'end' }}>
+        <PageNavigationButtons {...pageNavigationButtonsProps} />
+      </Stack>
     </Box>
   );
 };

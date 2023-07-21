@@ -76,7 +76,7 @@ const ItemCard = ({ value }: ItemCardProps) => {
   return (
     <Grid
       padding={{ base: 4, md: 8 }}
-      border="1px solid"
+      border="2px solid"
       borderColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
       borderRadius={24}
       transition="ease-out 0.3s"
