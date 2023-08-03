@@ -1,5 +1,5 @@
-import Home from 'lib/pages/home';
-import { getCategoryList } from 'lib/services/publicapis/category';
+import Home from '@/lib/pages/home';
+import { getCategoryList } from '@/lib/services/publicapis/category';
 
 const HomePage = async () => {
   const categoryData = await getCategoryList();

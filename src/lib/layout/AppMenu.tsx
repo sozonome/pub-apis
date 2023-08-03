@@ -22,8 +22,8 @@ import {
 import { useEffect, useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 
-import { EVENT_TYPE_CTA } from 'lib/constants/events';
-import { trackEvent } from 'lib/utils/trackEvent';
+import { EVENT_TYPE_CTA } from '@/lib/constants/events';
+import { trackEvent } from '@/lib/utils/trackEvent';
 
 import Badges from './Badges';
 

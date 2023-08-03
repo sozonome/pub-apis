@@ -1,5 +1,5 @@
-import { API_URL } from 'lib/services/publicapis/constants';
-import { buildUrl } from 'lib/utils/buildUrl';
+import { API_URL } from '@/lib/services/publicapis/constants';
+import { buildUrl } from '@/lib/utils/buildUrl';
 
 import type { CategoryResponse } from './types';
 

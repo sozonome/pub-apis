@@ -1,5 +1,5 @@
-import { API_URL } from 'lib/services/publicapis/constants';
-import { buildUrl } from 'lib/utils/buildUrl';
+import { API_URL } from '@/lib/services/publicapis/constants';
+import { buildUrl } from '@/lib/utils/buildUrl';
 
 import { GET_LIST_RESOURCE_PATH } from './constants';
 import type { APIListParams, APIListResponse } from './types';

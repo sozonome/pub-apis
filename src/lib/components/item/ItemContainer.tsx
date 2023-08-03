@@ -1,7 +1,7 @@
 import type { GridProps } from '@chakra-ui/react';
 import { Grid } from '@chakra-ui/react';
 
-import type { APIEntry } from 'lib/services/publicapis/list/types';
+import type { APIEntry } from '@/lib/services/publicapis/list/types';
 
 import ItemCard from './ItemCard';
 

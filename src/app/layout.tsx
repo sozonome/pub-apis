@@ -1,10 +1,13 @@
 import Script from 'next/script';
 
-import Providers from 'app/providers';
-import { UMAMI_SRC, UMAMI_WEBSITE_ID } from 'lib/constants/umami';
-import Layout from 'lib/layout';
+import Providers from '@/app/providers';
+import { ThemeProvider } from '@/lib/components/theme-provider';
+import { UMAMI_SRC, UMAMI_WEBSITE_ID } from '@/lib/constants/umami';
+import Layout from '@/lib/layout';
+import '@/lib/styles/globals.css';
+import { fontSans } from '@/lib/styles/fonts';
 
-export { metadata } from 'lib/constants/root_metadata';
+export { metadata } from '@/lib/constants/root_metadata';
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -13,10 +16,12 @@ type RootLayoutProps = {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
-      <body>
-        <Providers>
-          <Layout>{children}</Layout>
-        </Providers>
+      <body className={fontSans.variable}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Providers>
+            <Layout>{children}</Layout>
+          </Providers>
+        </ThemeProvider>
 
         {/* umami self-hosted analytics */}
         <Script

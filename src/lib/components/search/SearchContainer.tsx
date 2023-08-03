@@ -27,10 +27,10 @@ import pickBy from 'lodash/pickBy';
 import { useForm } from 'react-hook-form';
 import { FaFilter } from 'react-icons/fa';
 
-import ItemContainer from 'lib/components/item/ItemContainer';
-import { INITIAL_VALUES } from 'lib/components/search/constants';
-import type { SearchForm } from 'lib/models/searchForm';
-import { useApiList } from 'lib/services/publicapis/list/hooks';
+import ItemContainer from '@/lib/components/item/ItemContainer';
+import { INITIAL_VALUES } from '@/lib/components/search/constants';
+import type { SearchForm } from '@/lib/models/searchForm';
+import { useApiList } from '@/lib/services/publicapis/list/hooks';
 
 import type { SearchContainerProps } from './types';
 

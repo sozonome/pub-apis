@@ -13,7 +13,7 @@ import {
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import { ImCopy } from 'react-icons/im';
 
-import type { APIEntry } from 'lib/services/publicapis/list/types';
+import type { APIEntry } from '@/lib/services/publicapis/list/types';
 
 type APIDetailsProps = Omit<APIEntry, 'API' | 'Description' | 'Link'>;
 

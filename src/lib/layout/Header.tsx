@@ -1,8 +1,9 @@
 import { Flex, Heading, Box, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 
+import { ThemeToggle } from '@/lib/components/theme-toggle';
+
 import AppMenu from './AppMenu';
-import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   return (

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { apiListParamsSchema } from 'lib/models/apiParams';
+import { apiListParamsSchema } from '@/lib/models/apiParams';
 
 export const searchFormSchema = z.object({
   queryParams: apiListParamsSchema,

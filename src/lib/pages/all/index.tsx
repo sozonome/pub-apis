@@ -8,9 +8,9 @@ import type { ChangeEvent } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-import ItemContainer from 'lib/components/item/ItemContainer';
-import type { PageNavigationButtonsProps } from 'lib/components/list/PageNavigationButtons';
-import PageNavigationButtons from 'lib/components/list/PageNavigationButtons';
+import ItemContainer from '@/lib/components/item/ItemContainer';
+import type { PageNavigationButtonsProps } from '@/lib/components/list/PageNavigationButtons';
+import PageNavigationButtons from '@/lib/components/list/PageNavigationButtons';
 
 import type { APIListPageProps } from './types';
 

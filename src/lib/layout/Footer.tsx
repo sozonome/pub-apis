@@ -1,7 +1,7 @@
 import { Box, Flex, Link, Text } from '@chakra-ui/react';
 
-import { EVENT_TYPE_LINK } from 'lib/constants/events';
-import { trackEvent } from 'lib/utils/trackEvent';
+import { EVENT_TYPE_LINK } from '@/lib/constants/events';
+import { trackEvent } from '@/lib/utils/trackEvent';
 
 const Footer = () => {
   const handleClickSite = () => {

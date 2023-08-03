@@ -1,8 +1,8 @@
 import { IconButton, useColorMode } from '@chakra-ui/react';
 import { RiMoonFill, RiSunLine } from 'react-icons/ri';
 
-import { EVENT_TYPE_CTA } from 'lib/constants/events';
-import { trackEvent } from 'lib/utils/trackEvent';
+import { EVENT_TYPE_CTA } from '@/lib/constants/events';
+import { trackEvent } from '@/lib/utils/trackEvent';
 
 const ThemeToggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
