@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -8,6 +10,9 @@ module.exports = {
     './src/**/*.{ts,tsx}',
 	],
   theme: {
+    fontFamily: {
+      sans: ['var(--font-sans)', ...fontFamily.sans],
+    },
     container: {
       center: true,
       padding: "2rem",

@@ -1,4 +1,3 @@
-import { Grid } from '@chakra-ui/react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 import { Button } from '@/lib/components/ui/button';
@@ -15,24 +14,24 @@ const PageNavigationButtons = ({
   lastPage,
 }: PageNavigationButtonsProps) => {
   return (
-    <Grid
-      hidden={lastPage <= 0}
-      templateColumns="repeat(2, 1fr)"
-      marginY={4}
-      gap={4}
-    >
-      <Button disabled={currentPage === 0} onClick={handleChangePage('prev')}>
+    <div className="my-4 grid grid-cols-2 gap-4" hidden={lastPage <= 0}>
+      <Button
+        disabled={currentPage === 0}
+        className="rounded-3xl"
+        onClick={handleChangePage('prev')}
+      >
         <AiOutlineArrowLeft />
         Prev
       </Button>
       <Button
         disabled={currentPage === lastPage}
+        className="rounded-3xl"
         onClick={handleChangePage('next')}
       >
         Next
         <AiOutlineArrowRight />
       </Button>
-    </Grid>
+    </div>
   );
 };
 
