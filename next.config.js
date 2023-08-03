@@ -11,4 +11,12 @@ module.exports = withPWA({
   eslint: {
     dirs: ['src'],
   },
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        hostname: '*.producthunt.com',
+      },
+    ],
+  },
 });
