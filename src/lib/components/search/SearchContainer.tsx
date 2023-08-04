@@ -151,7 +151,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                       control={control}
                       name="queryParams.https"
                       render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="flex items-center gap-2 space-y-0">
                           <FormControl>
                             <Checkbox
                               checked={field.value}
