@@ -1,9 +1,9 @@
 'use client';
 
-import { Box, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import SearchContainer from '@/lib/components/search/SearchContainer';
+import { Button } from '@/lib/components/ui/button';
 import { EVENT_TYPE_NAVIGATE } from '@/lib/constants/events';
 import type { HomePageProps } from '@/lib/pages/home/types';
 import { trackEvent } from '@/lib/utils/trackEvent';
@@ -19,17 +19,17 @@ const Home = ({ categoryData }: HomePageProps) => {
   const categories = categoryData?.categories ?? [];
 
   return (
-    <Box mb={8} marginX="auto" maxWidth={800}>
+    <div className="mx-auto mb-8 max-w-3xl">
       <SearchContainer categories={categories} />
 
-      <Box marginY={12}>
-        <Link href="/all" passHref legacyBehavior>
-          <Button as={Link} href="/all" width="full" onClick={handleClickAll}>
+      <div className="my-12">
+        <Button asChild className="w-full" onClick={handleClickAll}>
+          <Link href="/all" onClick={handleClickAll}>
             I want to see the complete list
-          </Button>
-        </Link>
-      </Box>
-    </Box>
+          </Link>
+        </Button>
+      </div>
+    </div>
   );
 };
 

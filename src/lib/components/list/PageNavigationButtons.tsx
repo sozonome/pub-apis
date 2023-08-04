@@ -15,17 +15,12 @@ const PageNavigationButtons = ({
 }: PageNavigationButtonsProps) => {
   return (
     <div className="my-4 grid grid-cols-2 gap-4" hidden={lastPage <= 0}>
-      <Button
-        disabled={currentPage === 0}
-        className="rounded-3xl"
-        onClick={handleChangePage('prev')}
-      >
+      <Button disabled={currentPage === 0} onClick={handleChangePage('prev')}>
         <AiOutlineArrowLeft />
         Prev
       </Button>
       <Button
         disabled={currentPage === lastPage}
-        className="rounded-3xl"
         onClick={handleChangePage('next')}
       >
         Next
