@@ -16,7 +16,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className="ml-auto flex-[40%] text-right">
+      <div className="ml-auto flex flex-[40%] items-center justify-end gap-2 text-right">
         <ThemeToggle />
         <AppMenu />
       </div>

@@ -1,12 +1,12 @@
 import Script from 'next/script';
 
-import Providers from '@/app/providers';
 import { ThemeProvider } from '@/lib/components/theme-provider';
 import { Toaster } from '@/lib/components/ui/toaster';
 import { UMAMI_SRC, UMAMI_WEBSITE_ID } from '@/lib/constants/umami';
 import Layout from '@/lib/layout';
 import { fontSans } from '@/lib/styles/fonts';
 import '@/lib/styles/globals.css';
+import { cn } from '@/lib/styles/utils';
 
 export { metadata } from '@/lib/constants/root_metadata';
 
@@ -17,11 +17,9 @@ type RootLayoutProps = {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
-      <body className={fontSans.variable}>
+      <body className={cn(fontSans.variable, 'font-sans')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Providers>
-            <Layout>{children}</Layout>
-          </Providers>
+          <Layout>{children}</Layout>
           <Toaster />
         </ThemeProvider>
 

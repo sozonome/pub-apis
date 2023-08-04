@@ -5,6 +5,6 @@ export const INITIAL_VALUES: SearchForm = {
     title: '',
     description: '',
     https: false,
-    category: '',
+    category: undefined,
   },
 };
