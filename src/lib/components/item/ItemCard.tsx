@@ -1,37 +1,28 @@
-import {
-  Box,
-  Flex,
-  Grid,
-  Heading,
-  IconButton,
-  Link,
-  Tag,
-  Text,
-  useColorMode,
-  useToast,
-} from '@chakra-ui/react';
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import { ImCopy } from 'react-icons/im';
 
-import type { APIEntry } from 'lib/services/publicapis/list/types';
+import { Badge } from '@/lib/components/ui/badge';
+import { Button } from '@/lib/components/ui/button';
+import { useToast } from '@/lib/components/ui/use-toast';
+import type { APIEntry } from '@/lib/services/publicapis/list/types';
 
 type APIDetailsProps = Omit<APIEntry, 'API' | 'Description' | 'Link'>;
 
 const APIDetails = ({ Category, HTTPS, Cors, Auth }: APIDetailsProps) => {
   return (
-    <Flex alignItems="center" gap={2} wrap="wrap">
-      <Tag>{Category}</Tag>
-      <Tag alignItems="center">
-        <Text marginRight={2}>HTTPS :</Text>
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge variant="secondary">{Category}</Badge>
+      <Badge variant="secondary" className="items-center">
+        <p className="mr-2">HTTPS :</p>
         {HTTPS ? (
           <AiFillCheckCircle color="green" />
         ) : (
           <AiFillCloseCircle color="red" />
         )}
-      </Tag>
-      <Tag>CORS : {Cors}</Tag>
-      {Auth && <Tag>Auth : {Auth}</Tag>}
-    </Flex>
+      </Badge>
+      <Badge variant="secondary">CORS : {Cors}</Badge>
+      {Auth && <Badge variant="secondary">Auth : {Auth}</Badge>}
+    </div>
   );
 };
 
@@ -40,8 +31,6 @@ type ItemCardProps = {
 };
 
 const ItemCard = ({ value }: ItemCardProps) => {
-  const { colorMode } = useColorMode();
-
   const {
     API: APIName,
     Description,
@@ -59,58 +48,39 @@ const ItemCard = ({ value }: ItemCardProps) => {
     Auth,
   };
 
-  const toast = useToast();
+  const { toast } = useToast();
 
   const handleCopy = (e: React.MouseEvent) => {
     e.preventDefault();
     navigator.clipboard.writeText(APILink);
     toast({
       description: `"${APILink}" copied to clipboard!`,
-      status: 'success',
-      isClosable: true,
-      duration: 9000,
-      position: 'top-right',
     });
   };
 
   return (
-    <Grid
-      padding={{ base: 4, md: 8 }}
-      border="2px solid"
-      borderColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
-      borderRadius={24}
-      transition="ease-out 0.3s"
-      _hover={{
-        transform: 'scale(1.02)',
-      }}
-      gap={4}
-      role="group"
-      as={Link}
+    <a
+      className="group relative grid gap-4 rounded-3xl border-2 border-solid border-gray-200 p-4 decoration-[none] duration-300 ease-out hover:scale-[1.02] dark:border-gray-700 md:p-8"
       href={APILink}
-      style={{
-        textDecoration: 'none',
-      }}
-      position="relative"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <Box>
-        <Heading fontSize="lg">{APIName}</Heading>
-        <Text marginY={1} fontSize="sm" color="gray" fontWeight="light">
-          {Description}
-        </Text>
-      </Box>
+      <div>
+        <h2 className="text-lg font-bold">{APIName}</h2>
+        <p className="my-1 text-sm font-light text-gray-500">{Description}</p>
+      </div>
 
       <APIDetails {...apiDetailsProps} />
 
-      <IconButton
-        position="absolute"
-        top={{ base: 4, md: 6 }}
-        right={{ base: 4, md: 6 }}
+      <Button
+        className="absolute right-4 top-4 rounded-3xl md:right-6 md:top-6"
         aria-label="copy button"
         onClick={handleCopy}
-        icon={<ImCopy />}
-        size="md"
-      />
-    </Grid>
+        variant="secondary"
+      >
+        <ImCopy />
+      </Button>
+    </a>
   );
 };
 

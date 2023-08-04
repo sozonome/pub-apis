@@ -1,29 +1,19 @@
+/* eslint-disable @next/next/no-img-element */
+
 'use client';
 
-import {
-  Box,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  Flex,
-  Heading,
-  IconButton,
-  Image,
-  Link,
-  Spinner,
-  Text,
-  useColorMode,
-  useDisclosure,
-  useMediaQuery,
-} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 
-import { EVENT_TYPE_CTA } from 'lib/constants/events';
-import { trackEvent } from 'lib/utils/trackEvent';
+import { Button } from '@/lib/components/ui/button';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from '@/lib/components/ui/sheet';
+import { EVENT_TYPE_CTA } from '@/lib/constants/events';
+import { trackEvent } from '@/lib/utils/trackEvent';
 
 import Badges from './Badges';
 
@@ -39,86 +29,69 @@ type AppsType = {
 const PROJECT_LIST_URL = `${process.env.NEXT_PUBLIC_PROJECTS_LIST_URL}`;
 
 const AppMenu = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode } = useColorMode();
-
-  const [isBiggerThanMobile] = useMediaQuery('(min-width: 480px)');
   const [apps, setApps] = useState<Array<AppsType>>([]);
-  const [loading, setLoading] = useState<boolean>(false);
 
   const handleClickAppMenu = () => {
     trackEvent({
       eventName: 'Open App Menu',
       eventData: { type: EVENT_TYPE_CTA },
     });
-    onOpen();
   };
 
   useEffect(() => {
-    setLoading(true);
     fetch(`${PROJECT_LIST_URL}`)
       .then((res) => res.json())
       .then((result) => {
         setApps(result);
-        setLoading(false);
       });
   }, []);
 
   return (
-    <>
-      <IconButton
-        marginLeft={2}
-        aria-label="app-menu"
-        icon={<BiMenu />}
-        background="none"
-        onClick={handleClickAppMenu}
-      />
-      <Drawer
-        placement={isBiggerThanMobile ? 'right' : 'top'}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
-        <DrawerOverlay />
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          aria-label="app-menu"
+          onClick={handleClickAppMenu}
+          size="icon"
+          variant="outline"
+        >
+          <BiMenu />
+        </Button>
+      </SheetTrigger>
 
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>
-            <Heading size="xs">More from sznm.dev</Heading>
-          </DrawerHeader>
+      <SheetContent>
+        <SheetHeader>
+          <h3 className="text-xs font-bold">More from sznm.dev</h3>
+        </SheetHeader>
 
-          <DrawerBody>
-            {loading && <Spinner />}
-            {apps
-              .filter((app) => app.name !== APP_NAME)
-              .map(({ name, icon, url, description }) => (
-                <Link key={name} href={url} _hover={{ textDecoration: 'none' }}>
-                  <Flex
-                    marginY={4}
-                    alignItems="center"
-                    padding={2}
-                    borderRadius={12}
-                    _hover={{
-                      backgroundColor:
-                        colorMode === 'light' ? 'gray.200' : 'gray.600',
-                    }}
-                  >
-                    <Image src={icon} width={12} />
-                    <Box marginLeft={4}>
-                      <Heading size="sm">{name}</Heading>
-                      {description && <Text fontSize="xs">{description}</Text>}
-                    </Box>
-                  </Flex>
-                </Link>
-              ))}
+        <div>
+          {apps
+            .filter((app) => app.name !== APP_NAME)
+            .map(({ name, icon, url, description }) => (
+              <a
+                className="hover:decoration-[none]"
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="my-4 flex items-center rounded-xl p-2 hover:bg-gray-200 hover:dark:bg-gray-600">
+                  <img src={icon} width={12} alt={name} />
+                  <div className="ml-4">
+                    <h4 className="text-sm font-bold">{name}</h4>
+                    {description && <p className="text-xs">{description}</p>}
+                  </div>
+                </div>
+              </a>
+            ))}
 
-            <Box marginTop={8}>
-              <Text>Public APIs</Text>
-              <Badges />
-            </Box>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </>
+          <div className="mt-8">
+            <p>Public APIs</p>
+            <Badges />
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 

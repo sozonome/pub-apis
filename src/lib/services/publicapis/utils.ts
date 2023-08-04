@@ -2,8 +2,8 @@
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 
-import type { SWRHookResponse } from 'lib/types/SWRHook';
-import { fetcher } from 'lib/utils/fetcher';
+import type { SWRHookResponse } from '@/lib/types/SWRHook';
+import { fetcher } from '@/lib/utils/fetcher';
 
 import { API_URL } from './constants';
 

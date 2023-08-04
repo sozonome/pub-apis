@@ -1,23 +1,24 @@
 'use client';
 
-import { Box, Button, FormControl, Input, Stack } from '@chakra-ui/react';
 import chunk from 'lodash/chunk';
 import debounce from 'lodash/debounce';
 import Link from 'next/link';
 import type { ChangeEvent } from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import React from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-import ItemContainer from 'lib/components/item/ItemContainer';
-import type { PageNavigationButtonsProps } from 'lib/components/list/PageNavigationButtons';
-import PageNavigationButtons from 'lib/components/list/PageNavigationButtons';
+import ItemContainer from '@/lib/components/item/ItemContainer';
+import type { PageNavigationButtonsProps } from '@/lib/components/list/PageNavigationButtons';
+import PageNavigationButtons from '@/lib/components/list/PageNavigationButtons';
+import { Button } from '@/lib/components/ui/button';
+import { Input } from '@/lib/components/ui/input';
 
 import type { APIListPageProps } from './types';
 
 const ITEM_PER_PAGE = 24;
 
 const APIListPage = ({ data }: APIListPageProps) => {
-  const sortedData = useMemo(() => {
+  const sortedData = React.useMemo(() => {
     if (!data?.entries) {
       return [];
     }
@@ -33,10 +34,10 @@ const APIListPage = ({ data }: APIListPageProps) => {
     });
   }, [data]);
 
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [keyword, setKeyword] = useState<string>('');
+  const [currentPage, setCurrentPage] = React.useState<number>(0);
+  const [keyword, setKeyword] = React.useState<string>('');
 
-  const paginatedData = useMemo(() => {
+  const paginatedData = React.useMemo(() => {
     const filteredData = sortedData.filter((entry) => {
       if (!keyword) {
         return true;
@@ -51,7 +52,7 @@ const APIListPage = ({ data }: APIListPageProps) => {
     return chunk(filteredData, ITEM_PER_PAGE);
   }, [keyword, sortedData]);
 
-  const handleChangePage = useCallback(
+  const handleChangePage = React.useCallback(
     (type: 'next' | 'prev') => () => {
       const updatePageNumber =
         type === 'next' ? currentPage + 1 : currentPage - 1;
@@ -62,7 +63,7 @@ const APIListPage = ({ data }: APIListPageProps) => {
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChangeKeyword = useCallback(
+  const handleChangeKeyword = React.useCallback(
     debounce((event: ChangeEvent<HTMLInputElement>) => {
       setKeyword(event.target.value.toLowerCase());
       if (currentPage !== 0) {
@@ -72,7 +73,7 @@ const APIListPage = ({ data }: APIListPageProps) => {
     [currentPage]
   );
 
-  const pageNavigationButtonsProps: PageNavigationButtonsProps = useMemo(
+  const pageNavigationButtonsProps: PageNavigationButtonsProps = React.useMemo(
     () => ({
       currentPage,
       handleChangePage,
@@ -82,37 +83,30 @@ const APIListPage = ({ data }: APIListPageProps) => {
   );
 
   return (
-    <Box>
-      <Button
-        as={Link}
-        href="/"
-        leftIcon={<AiOutlineArrowLeft />}
-        marginBottom={8}
-      >
-        back
+    <>
+      <Button asChild className="mb-8">
+        <Link href="/">
+          <AiOutlineArrowLeft />
+          back
+        </Link>
       </Button>
-      <Stack
-        alignItems={{ md: 'center' }}
-        direction={{ base: 'column', md: 'row' }}
-        gap={2}
-      >
-        <FormControl>
-          <Input
-            type="text"
-            placeholder="quick search"
-            size="lg"
-            onChange={handleChangeKeyword}
-          />
-        </FormControl>
+
+      <div className="flex flex-col gap-2 md:flex-row md:items-center">
+        <Input
+          type="text"
+          placeholder="quick search"
+          className="h-12 flex-[60%]"
+          onChange={handleChangeKeyword}
+        />
         <PageNavigationButtons {...pageNavigationButtonsProps} />
-      </Stack>
+      </div>
       {paginatedData[currentPage]?.length ? (
         <ItemContainer entries={paginatedData[currentPage]} />
       ) : null}
-      <Stack alignItems={{ md: 'end' }} justifyContent={{ md: 'end' }}>
+      <div className="flex flex-col md:items-end md:justify-end">
         <PageNavigationButtons {...pageNavigationButtonsProps} />
-      </Stack>
-    </Box>
+      </div>
+    </>
   );
 };
 

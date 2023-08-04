@@ -1,29 +1,25 @@
-import type { GridProps } from '@chakra-ui/react';
-import { Grid } from '@chakra-ui/react';
-
-import type { APIEntry } from 'lib/services/publicapis/list/types';
+import type { APIEntry } from '@/lib/services/publicapis/list/types';
+import { cn } from '@/lib/styles/utils';
 
 import ItemCard from './ItemCard';
 
 type ItemContainerProps = {
   entries: Array<APIEntry>;
-  templateColumns?: GridProps['templateColumns'];
+  className?: string;
 };
 
-const ItemContainer = ({
-  entries,
-  templateColumns = {
-    base: 'repeat(1)',
-    md: 'repeat(2, 1fr)',
-    xl: 'repeat(3, 1fr)',
-  },
-}: ItemContainerProps) => {
+const ItemContainer = ({ entries, className }: ItemContainerProps) => {
   return (
-    <Grid marginY={4} templateColumns={templateColumns} gap={8}>
+    <div
+      className={cn(
+        'my-4 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3',
+        className
+      )}
+    >
       {entries.map((entry) => (
         <ItemCard value={entry} key={`${entry.API}-${entry.Link}`} />
       ))}
-    </Grid>
+    </div>
   );
 };
 

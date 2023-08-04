@@ -1,10 +1,5 @@
-'use client';
-
-import { Box, Flex } from '@chakra-ui/react';
-
 import Footer from './Footer';
 import Header from './Header';
-import Meta from './Meta';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -12,23 +7,13 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Box transition="0.5s ease-out">
-      <Meta />
-      <Flex
-        margin="0 auto"
-        flexWrap="wrap"
-        maxWidth={1200}
-        width="100%"
-        padding={8}
-        minHeight="100vh"
-      >
+    <div className="duration-500 ease-out">
+      <div className="mx-auto my-0 flex min-h-screen w-full max-w-7xl flex-wrap p-8">
         <Header />
-        <Box as="main" width="100%" marginY={22}>
-          {children}
-        </Box>
+        <main className="my-[22px] w-full">{children}</main>
         <Footer />
-      </Flex>
-    </Box>
+      </div>
+    </div>
   );
 };
 

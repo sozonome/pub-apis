@@ -1,28 +1,26 @@
-import { Flex, Heading, Box, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 
+import { ThemeToggle } from '@/lib/components/theme-toggle';
+
 import AppMenu from './AppMenu';
-import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   return (
-    <Flex as="header" width="full" height={24} align="center">
-      <Box flexBasis="60%">
+    <header className="flex h-24 w-full items-center">
+      <div className="flex-[60%]">
         <Link href="/">
-          <Heading as="h1" fontSize={{ base: 'md', md: 'xl' }}>
-            Public APIs
-          </Heading>
-          <Text fontSize="xs" color="gray">
+          <h1 className="text-base font-bold md:text-xl">Public APIs</h1>
+          <p className="text-xs text-gray-500">
             Find some public APIs for your next projects
-          </Text>
+          </p>
         </Link>
-      </Box>
+      </div>
 
-      <Box marginLeft="auto" textAlign="right" flexBasis="40%">
+      <div className="ml-auto flex flex-[40%] items-center justify-end gap-2 text-right">
         <ThemeToggle />
         <AppMenu />
-      </Box>
-    </Flex>
+      </div>
+    </header>
   );
 };
 

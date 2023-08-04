@@ -1,44 +1,43 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Heading,
-  Text,
-  Image,
-  Link as ChakraLink,
-  useColorMode,
-} from '@chakra-ui/react';
+import Image from 'next/image';
 import Link from 'next/link';
 
-const Page404 = () => {
-  const { colorMode } = useColorMode();
+import { Button } from '@/lib/components/ui/button';
 
+const Page404 = () => {
   return (
     <>
-      <Box width={['100%', '70%', '60%', '60%']} margin="0 auto">
-        <Image src="/404 Error-pana.svg" />
-      </Box>
-      <Text textAlign="center" fontSize="xs">
-        <ChakraLink href="https://stories.freepik.com/web" isExternal>
+      <div className="w-100 mx-auto sm:w-[70%] md:w-[60%]">
+        <Image
+          src="/404 Error-pana.svg"
+          width={1200}
+          height={1200}
+          alt="error"
+        />
+      </div>
+      <div className="text-center text-xs">
+        <a
+          href="https://stories.freepik.com/web"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Illustration by Freepik Stories
-        </ChakraLink>
-      </Text>
+        </a>
+      </div>
 
-      <Box marginY={4}>
-        <Heading textAlign="center">Page not Found.</Heading>
+      <div className="my-4">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">Page not Found.</h2>
+          <p>It&apos;s Okay!</p>
+        </div>
 
-        <Box textAlign="center" marginTop={4}>
-          <Text>It&apos;s Okay!</Text>
-          <Button
-            as={Link}
-            href="/"
-            backgroundColor={colorMode === 'light' ? 'gray.300' : 'teal.500'}
-          >
-            Let&apos;s Head Back
+        <div className="mt-4 text-center">
+          <Button asChild>
+            <Link href="/">Let&apos;s Head Back</Link>
           </Button>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
   );
 };
