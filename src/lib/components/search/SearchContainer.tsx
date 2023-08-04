@@ -176,7 +176,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
         </div>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid grid-cols-3 gap-4">
         <Button
           disabled={searchButtonDisabled}
           className="col-span-2 w-full"
