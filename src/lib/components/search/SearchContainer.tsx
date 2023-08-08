@@ -2,7 +2,7 @@
 
 'use client';
 
-import { ReloadIcon } from '@radix-ui/react-icons';
+import { CaretSortIcon, CheckIcon, ReloadIcon } from '@radix-ui/react-icons';
 import pickBy from 'lodash/pickBy';
 import { useForm } from 'react-hook-form';
 import { FaFilter } from 'react-icons/fa';
@@ -12,6 +12,13 @@ import { INITIAL_VALUES } from '@/lib/components/search/constants';
 import { Badge } from '@/lib/components/ui/badge';
 import { Button } from '@/lib/components/ui/button';
 import { Checkbox } from '@/lib/components/ui/checkbox';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/lib/components/ui/command';
 import {
   Form,
   FormControl,
@@ -25,17 +32,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/lib/components/ui/popover';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/lib/components/ui/select';
+import { ScrollArea } from '@/lib/components/ui/scroll-area';
 import { Skeleton } from '@/lib/components/ui/skeleton';
 import { useToast } from '@/lib/components/ui/use-toast';
 import type { SearchForm } from '@/lib/models/searchForm';
 import { useApiList } from '@/lib/services/publicapis/list/hooks';
+import { cn } from '@/lib/styles/utils';
 
 import type { SearchContainerProps } from './types';
 
@@ -121,27 +123,65 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                     control={control}
                     name="queryParams.category"
                     render={({ field }) => (
-                      <FormItem>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select Category ..." />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {categories?.map((categoryItem: string) => (
-                              <SelectItem
-                                value={categoryItem}
-                                key={categoryItem}
+                      <FormItem className="flex flex-col">
+                        <FormLabel>Category</FormLabel>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant="outline"
+                                role="combobox"
+                                className={cn(
+                                  'justify-between',
+                                  !field.value && 'text-muted-foreground'
+                                )}
                               >
-                                {categoryItem}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                                {field.value
+                                  ? categories?.find(
+                                      (categoryOption) =>
+                                        categoryOption === field.value
+                                    )
+                                  : 'Select Category'}
+                                <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="p-0">
+                            <Command>
+                              <CommandInput
+                                placeholder="Search category..."
+                                className="h-9"
+                              />
+                              <CommandEmpty>No category found.</CommandEmpty>
+                              <CommandGroup>
+                                <ScrollArea className="h-[200px]">
+                                  {categories?.map((categoryItem: string) => (
+                                    <CommandItem
+                                      value={categoryItem}
+                                      key={categoryItem}
+                                      onSelect={() => {
+                                        form.setValue(
+                                          'queryParams.category',
+                                          categoryItem
+                                        );
+                                      }}
+                                    >
+                                      {categoryItem}
+                                      <CheckIcon
+                                        className={cn(
+                                          'ml-auto h-4 w-4',
+                                          categoryItem === field.value
+                                            ? 'opacity-100'
+                                            : 'opacity-0'
+                                        )}
+                                      />
+                                    </CommandItem>
+                                  ))}
+                                </ScrollArea>
+                              </CommandGroup>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
                       </FormItem>
                     )}
                   />
