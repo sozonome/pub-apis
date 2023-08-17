@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": [".next/**", "!.next/cache/**", "public/**"],
+      "env": [
+        "NEXT_PUBLIC_PUBLICAPIS_URL",
+        "NEXT_PUBLIC_PROJECTS_LIST_URL",
+        "NEXT_PUBLIC_UMAMI_WEBSITE_ID",
+        "NEXT_PUBLIC_UMAMI_SRC"
+      ]
+    },
+    "lint": {
+      "outputs": [],
+      "inputs": [".eslintrc.*", "src/**"]
+    },
+    "type-check": {
+      "outputs": ["*.tsbuildinfo"]
+    }
+  }
+}
