@@ -4,6 +4,7 @@
 
 import { CaretSortIcon, CheckIcon, ReloadIcon } from '@radix-ui/react-icons';
 import pickBy from 'lodash/pickBy';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaFilter } from 'react-icons/fa';
 
@@ -43,6 +44,8 @@ import type { SearchContainerProps } from './types';
 
 const SearchContainer = ({ categories }: SearchContainerProps) => {
   const { toast } = useToast();
+  const [isCategoryPopoverOpen, setIsCategoryPopoverOpen] =
+    React.useState<boolean>(false);
 
   const {
     data: searchResult,
@@ -125,7 +128,10 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                     render={({ field }) => (
                       <FormItem className="flex flex-col">
                         <FormLabel>Category</FormLabel>
-                        <Popover>
+                        <Popover
+                          open={isCategoryPopoverOpen}
+                          onOpenChange={setIsCategoryPopoverOpen}
+                        >
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
@@ -164,6 +170,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                                           'queryParams.category',
                                           categoryItem
                                         );
+                                        setIsCategoryPopoverOpen(false);
                                       }}
                                     >
                                       {categoryItem}
