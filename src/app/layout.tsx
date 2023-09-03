@@ -29,7 +29,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           defer
           data-website-id={UMAMI_WEBSITE_ID}
           src={UMAMI_SRC}
-          data-domains="sznm.dev"
         />
       </body>
     </html>
