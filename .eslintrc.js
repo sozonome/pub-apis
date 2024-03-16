@@ -7,4 +7,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:@next/next/recommended',
   ],
+  rules: {
+    'react/prop-types': 'off'
+  }
 };
