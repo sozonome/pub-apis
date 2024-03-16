@@ -10,7 +10,7 @@ export const getApiList = async (params?: APIListParams) => {
     pathname: GET_LIST_RESOURCE_PATH,
     params,
   });
-  const res = await fetch(url, { next: { revalidate: 86400 } });
+  const res = await fetch(url, { next: { revalidate: 604800 } });
 
   return res.json() as Promise<APIListResponse>;
 };
