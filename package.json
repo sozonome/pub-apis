@@ -18,7 +18,7 @@
     "up-latest": "pnpm up-interactive -L",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
