@@ -161,7 +161,7 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                               <CommandEmpty>No category found.</CommandEmpty>
                               <CommandGroup>
                                 <ScrollArea className="h-[200px]">
-                                  {categories?.map((categoryItem: string) => (
+                                  {categories.map((categoryItem: string) => (
                                     <CommandItem
                                       value={categoryItem}
                                       key={categoryItem}

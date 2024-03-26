@@ -8,7 +8,7 @@ import { fontSans } from '@/lib/styles/fonts';
 import '@/lib/styles/globals.css';
 import { cn } from '@/lib/styles/utils';
 
-export { metadata } from '@/lib/constants/root_metadata';
+export { metadata, viewport } from '@/lib/constants/root_metadata';
 
 type RootLayoutProps = {
   children: React.ReactNode;

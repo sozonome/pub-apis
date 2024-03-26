@@ -76,7 +76,7 @@ const AppMenu = () => {
                 rel="noopener noreferrer"
               >
                 <div className="my-4 flex items-center rounded-xl p-2 hover:bg-gray-200 hover:dark:bg-gray-600">
-                  <img src={icon} width={12} alt={name} />
+                  <img src={icon} width={36} alt={name} />
                   <div className="ml-4">
                     <h4 className="text-sm font-bold">{name}</h4>
                     {description && <p className="text-xs">{description}</p>}

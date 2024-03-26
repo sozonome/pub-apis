@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 const creator = 'Agustinus Nathaniel';
 const baseUrl = 'https://publicapis.sznm.dev';
@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   keywords: [appName, 'public-apis', 'publicapis', 'publicapis.sznm.dev'],
   referrer: 'origin-when-cross-origin',
-  colorScheme: 'dark light',
   icons: {
     icon: 'https://sznm.dev/app_icons/pub-apis.svg',
   },
@@ -47,4 +46,8 @@ export const metadata: Metadata = {
     creator: '@sozonome',
     card: 'summary_large_image',
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: 'dark light',
 };
