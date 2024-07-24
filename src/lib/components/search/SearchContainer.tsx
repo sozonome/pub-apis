@@ -19,6 +19,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from '@/lib/components/ui/command';
 import {
   Form,
@@ -158,34 +159,36 @@ const SearchContainer = ({ categories }: SearchContainerProps) => {
                                 placeholder="Search category..."
                                 className="h-9"
                               />
-                              <CommandEmpty>No category found.</CommandEmpty>
-                              <CommandGroup>
-                                <ScrollArea className="h-[200px]">
-                                  {categories.map((categoryItem: string) => (
-                                    <CommandItem
-                                      value={categoryItem}
-                                      key={categoryItem}
-                                      onSelect={() => {
-                                        form.setValue(
-                                          'queryParams.category',
-                                          categoryItem
-                                        );
-                                        setIsCategoryPopoverOpen(false);
-                                      }}
-                                    >
-                                      {categoryItem}
-                                      <CheckIcon
-                                        className={cn(
-                                          'ml-auto h-4 w-4',
-                                          categoryItem === field.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0'
-                                        )}
-                                      />
-                                    </CommandItem>
-                                  ))}
-                                </ScrollArea>
-                              </CommandGroup>
+                              <CommandList>
+                                <CommandEmpty>No category found.</CommandEmpty>
+                                <CommandGroup>
+                                  <ScrollArea className="h-[200px]">
+                                    {categories.map((categoryItem: string) => (
+                                      <CommandItem
+                                        value={categoryItem}
+                                        key={categoryItem}
+                                        onSelect={() => {
+                                          form.setValue(
+                                            'queryParams.category',
+                                            categoryItem
+                                          );
+                                          setIsCategoryPopoverOpen(false);
+                                        }}
+                                      >
+                                        {categoryItem}
+                                        <CheckIcon
+                                          className={cn(
+                                            'ml-auto h-4 w-4',
+                                            categoryItem === field.value
+                                              ? 'opacity-100'
+                                              : 'opacity-0'
+                                          )}
+                                        />
+                                      </CommandItem>
+                                    ))}
+                                  </ScrollArea>
+                                </CommandGroup>
+                              </CommandList>
                             </Command>
                           </PopoverContent>
                         </Popover>

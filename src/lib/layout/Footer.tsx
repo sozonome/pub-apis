@@ -28,9 +28,9 @@ const Footer = () => {
           </a>
         </p>
 
-        <p className="text-xs sm:text-sm">
+        {/* <p className="text-xs sm:text-sm">
           Powered by https://api.publicapis.org/
-        </p>
+        </p> */}
       </div>
     </footer>
   );
